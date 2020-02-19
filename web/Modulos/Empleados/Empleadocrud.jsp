@@ -8,7 +8,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <title>UNIDADES DE TRANSPORTE</title>
+        <title>EMPLEADOS</title>
         <style>
             @media print{
                 .parte01,img, .btn, .accion{
@@ -65,44 +65,58 @@
                         <div class="card-body">
                             <!--DATOS DEL PRODUCTO-->
                             <div class="form-group">
-                                <label>UNIDADES DE TRANSPORTE</label>
+                                <label>EMPLEADOS</label>
                             </div>
                             <div class="form-group d-flex">
                                 <div class="col-sm-6 d-flex">
-                                    <label class=" col-sm-6 text-right mt-2">idUnidad</label>
-                                    <input type="text" name="UnidadesTransporte" value="${c.getDni()}" class="form-control" placeholder="Unidades">
+                                    <label class=" col-sm-7 text-right mt-2">idEmpledo</label>
+                                    <input type="text" name="idEmplado" value="${c.getDni()}" class="form-control" placeholder="idEmplado">
                                 </div>
                             </div>
                                 <div class="form-group d-flex">
                                     <div class="col-sm-6 d-flex">
-                                        <label class=" col-sm-6 text-right mt-2">No. Placas</label><br>
-                                    <input type="text" name="Placas" value="${c.getDni()}" class="form-control" placeholder="Placas">
+                                        <label class=" col-sm-7 text-right mt-2">Nombre</label><br>
+                                    <input type="text" name="Nombre" value="${c.getDni()}" class="form-control" placeholder="Nombre">
                                 </div>
                             </div>
                                 <div class="form-group d-flex">
                                     <div class="col-sm-6 d-flex">
-                                         <label class=" col-sm-6 text-right mt-2">Marca</label><br>
-                                    <input type="text" name="Marca" value="${c.getDni()}" class="form-control" placeholder="Marca">
+                                         <label class=" col-sm-7 text-right mt-2">Apellido Paterno</label><br>
+                                    <input type="text" name="apaterno" value="${c.getDni()}" class="form-control" placeholder="Apellido paterno">
                                 </div>
                             </div>
                                 <div class="form-group d-flex">
                                     <div class="col-sm-6 d-flex">
-                                        <label class=" col-sm-6 text-right mt-2">Modelo</label><br>
-                                    <input type="text" name="Modelo" value="${c.getDni()}" class="form-control" placeholder="Modelo">
+                                        <label class=" col-sm-7 text-right mt-2">Apellido Materno</label><br>
+                                    <input type="text" name="amaterno" value="${c.getDni()}" class="form-control" placeholder="Apellido Materno">
                                 </div>
                             </div>
                                 <div class="form-group d-flex">
                                     <div class="col-sm-6 d-flex">
-                                        <label class=" col-sm-6 text-right mt-2">Año</label><br>
-                                    <input type="date" name="anio" value="${c.getDni()}" class="form-control" placeholder="anio">
+                                        <label class=" col-sm-7 text-right mt-2">Sexo</label>
+                                    F<input type="checkbox" name="Sexo" value="${c.getDni()}" class="form-control" placeholder="Sexo">
+                                    M<input type="checkbox" name="Sexo" value="${c.getDni()}" class="form-control" placeholder="Sexo">
+                                </div>
+                            </div> 
+                                <div class="form-group d-flex">
+                                <div class="col-sm-6 d-flex">
+                                    <label class=" col-sm-7 text-right mt-2">Tipo</label><br>
+                                <input type="text" name="tipo" value="${c.getDni()}" class="form-control" placeholder="tipo">
                                 </div>
                             </div>
                                 <div class="form-group d-flex">
-                                    <div class="col-sm-6 d-flex">
-                                        <label class=" col-sm-6 text-right mt-2">Capacidad</label><br>
-                                    <input type="number" name="Capacidad" value="${c.getDni()}" class="form-control" placeholder="Capacidad">
+                                <div class="col-sm-6 d-flex">
+                                    <label class=" col-sm-7 text-right mt-2">email</label><br>
+                                    <input type="email" name="email" value="${c.getDni()}" class="form-control" placeholder="email">
                                 </div>
-                            </div>                                             
+                            </div>                                              
+                            <div class="form-group d-flex">
+                            <div class="col-sm-6 d-flex">
+                                <label class=" col-sm-7 text-right mt-2">Contraseña</label><br>
+                                <input type="password" name="Contrasena" value="${c.getDni()}" class="form-control" placeholder="Contrasena">
+                            </div>
+                        </div>                                              
+                    
                             <!--BOTON AGREGAR UNIDAD  AL REGISTRO-->
                             <div class="form-group">
                                 <div class="col-sm">
@@ -113,8 +127,8 @@
                         </div>
                     </form>
                                 <table id="div1"  class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive" border="1" style="overflow: auto">
-                    <tbody>
-					</tbody>
+                                        <tbody>
+   					</tbody>
 				    </table>
                 </div>
             </div>
@@ -125,13 +139,14 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr class="text-center">
-                                    <th>N°</th>
-                                    <th>ID UNIDAD</th>
-                                    <th>PLACAS</th>
-                                    <th>MARCA</th>
-                                    <th>MODELO</th>
-                                    <th>AÑO</th> 
-                                    <th>CAPACIDAD</th>                                                             
+                                    <th>IDEMPLEADO</th>
+                                    <th>NOMBRE</th>
+                                    <th>APELLIDO PATERNO</th>
+                                    <th>APELLIDO PATERNO</th>
+                                    <th>SEXO</th>
+                                    <th>TIPO</th> 
+                                    <th>EMAIL</th>
+                                    <th>CONTRASEÑA</th>                                                              
                                 </tr>
                             </thead>
                             <tbody>
