@@ -3,17 +3,18 @@
 <%@page import="java.util.Iterator"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page session="true" %>
+ 
 <!DOCTYPE html>
 
 <!-- navBar -->
 	<div class="full-width navBar">
 		<div class="full-width navBar-options">
-			<i class="zmdi zmdi-more-vert btn-menu" id="btn-menu"></i>	
+                    <i class="far fa-hand-point-left btn-menu" id="btn-menu"></i><br>	
 			<div class="mdl-tooltip" for="btn-menu">Menu</div>
 			<nav class="navBar-options-list">
 				<ul class="list-unstyle">
-					<li class="btn-exit" id="btn-exi">
-						<i class="zmdi zmdi-power"></i>
+					<li style="float:rigth" class="btn-exit" id="btn-exi">
+						<i class="fas fa-door-open"></i>
 						<div class="mdl-tooltip" for="btn-exi">Salir</div>
 					</li>
                                       
@@ -46,7 +47,8 @@
 				</figcaption>
 			</figure>
 			<div class="full-width tittles navLateral-body-tittle-menu">
-				<i class="zmdi zmdi-desktop-mac"></i><span class="hide-on-tablet">&nbsp; ESCRITORIO</span>
+                            <i class="fas fa-desktop"></i>
+				<span class="hide-on-tablet">&nbsp; ESCRITORIO</span>
 			</div>
 			
 			<nav class="full-width">
@@ -56,12 +58,12 @@
 					<li class="full-width">
 						<a href="#" class="full-width btn-subMenu">
 							<div class="navLateral-body-cl">
-								<i class="zmdi zmdi-case"></i>
+								<i class="fas fa-warehouse"></i>
 							</div>
 							<div class="navLateral-body-cr hide-on-tablet">
 								AlMACEN
 							</div>
-							<span class="zmdi zmdi-chevron-left"></span>
+							
 						</a>
 						<ul class="full-width menu-principal sub-menu-options">
 							<li class="full-width">
@@ -86,12 +88,12 @@
 					<li class="full-width">
 						<a href="#" class="full-width btn-subMenu">
 							<div class="navLateral-body-cl">
-								<i  class="zmdi zmdi-shopping-cart"></i>
+								<i class="fas fa-briefcase"></i>
 							</div>
 							<div class="navLateral-body-cr hide-on-tablet">
 								VENTA
 							</div>
-							<span class="zmdi zmdi-chevron-left"></span>
+							
 						</a>
 						<ul class="full-width menu-principal sub-menu-options">
 						<li class="full-width divider-menu-h"></li>	
@@ -124,12 +126,12 @@
 					<li class="full-width">
 						<a href="#" class="full-width btn-subMenu">
 							<div class="navLateral-body-cl">
-								<i  class="zmdi zmdi-shopping-cart"></i>
+								<i class="fas fa-truck-moving"></i>
 							</div>
 							<div class="navLateral-body-cr hide-on-tablet">
 								ENVIOS
 							</div>
-							<span class="zmdi zmdi-chevron-left"></span>
+							
 						</a>
 						<ul class="full-width menu-principal sub-menu-options">
 						<li class="full-width divider-menu-h"></li>	
@@ -139,7 +141,7 @@
                                                                     <i class="zmdi zmdi-account "></i>
                                                                     </div>
                                                                     <div class="navLateral-body-cr hide-on-tablet">
-                                                                     UNIDADES DE TRANSPORTE                 
+                                                                     UNIDADES                 
                                                                     </div>
                                                             </a>
 							</li>
@@ -162,12 +164,12 @@
 					<li class="full-width">
 						<a href="#!" class="full-width btn-subMenu">
 							<div class="navLateral-body-cl">
-								<i class="zmdi zmdi-face"></i>
+								<i class="fas fa-user"></i>
 							</div>
 							<div class="navLateral-body-cr hide-on-tablet">
 								ACCESO
 							</div>
-							<span class="zmdi zmdi-chevron-left"></span>
+							
 						</a>
 						<ul class="full-width menu-principal sub-menu-options">
 							<li class="full-width">
@@ -181,7 +183,7 @@
 								</a>
 							</li>
                                                         <li class="full-width">
-								<a href="empleado.jsp" class="full-width">
+                                                            <a href="Controlador?menu=Empleadocrud&accion=Listar" class="full-width">
 									<div class="navLateral-body-cl">
 										<i class="zmdi zmdi-account"></i>
 									</div>
@@ -201,12 +203,12 @@
 					<li class="full-width">
 						<a href="#!" class="full-width btn-subMenu">
 							<div class="navLateral-body-cl">
-								<i class="zmdi zmdi-folder"></i>
+								<i class="fas fa-folder"></i>
 							</div>
 							<div class="navLateral-body-cr hide-on-tablet">
 								ARCHIVOS
 							</div>
-							<span class="zmdi zmdi-chevron-left"></span>
+							
 						</a>
 						<ul class="full-width menu-principal sub-menu-options">
 							<li class="full-width">

@@ -1,42 +1,35 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Modelo;
 
-/**
- *
- * @author DELL
- */
 public class Empleado {
+int id;
+String nombre;
+String paterno;
+String materno;
+String sexo;
+String tipo;
+String email;
+String contra;
 
-    int idEmpleado;
-    String nombre;
-    String apaterno;
-    String amaterno;
-    char sexo;
-    blob fotografia;
-    String email;
-    String contraseña;
+    public Empleado() {
+    }
 
-    public Empleado(int idEmpleado, String nombre, String apaterno, String amaterno, char sexo, blob fotografia, String email, String contraseña) {
-        this.idEmpleado = idEmpleado;
+    public Empleado(int id, String nombre, String paterno, String materno, String sexo, String tipo, String email, String contra) {
+        this.id = id;
         this.nombre = nombre;
-        this.apaterno = apaterno;
-        this.amaterno = amaterno;
+        this.paterno = paterno;
+        this.materno = materno;
         this.sexo = sexo;
-        this.fotografia = fotografia;
+        this.tipo = tipo;
         this.email = email;
-        this.contraseña = contraseña;
+        this.contra = contra;
+    }
+    
+    public int getId() {
+        return id;
     }
 
-    public int getIdEmpleado() {
-        return idEmpleado;
-    }
-
-    public void setIdEmpleado(int idEmpleado) {
-        this.idEmpleado = idEmpleado;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -47,36 +40,36 @@ public class Empleado {
         this.nombre = nombre;
     }
 
-    public String getApaterno() {
-        return apaterno;
+    public String getPaterno() {
+        return paterno;
     }
 
-    public void setApaterno(String apaterno) {
-        this.apaterno = apaterno;
+    public void setPaterno(String paterno) {
+        this.paterno = paterno;
     }
 
-    public String getAmaterno() {
-        return amaterno;
+    public String getMaterno() {
+        return materno;
     }
 
-    public void setAmaterno(String amaterno) {
-        this.amaterno = amaterno;
+    public void setMaterno(String materno) {
+        this.materno = materno;
     }
 
-    public char getSexo() {
+    public String getSexo() {
         return sexo;
     }
 
-    public void setSexo(char sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 
-    public blob getFotografia() {
-        return fotografia;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setFotografia(blob fotografia) {
-        this.fotografia = fotografia;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getEmail() {
@@ -87,14 +80,14 @@ public class Empleado {
         this.email = email;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContra() {
+        return contra;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContra(String contra) {
+        this.contra = contra;
     }
 
-    
-    
+
+
 }

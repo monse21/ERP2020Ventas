@@ -25,7 +25,7 @@
 	<script src="js/sweetalert2.min.js" ></script>
 	<script src="js/jquery.mCustomScrollbar.concat.min.js" ></script>
 	<script src="js/main.js" ></script>
-        
+        <script src="https://kit.fontawesome.com/d6312ff71b.js"></script>
         <script  type="text/javascript" src="js/jquery-1.12.4.js"></script>
 	<script type="text/javascript" src="js/paginacion.js"></script>
        

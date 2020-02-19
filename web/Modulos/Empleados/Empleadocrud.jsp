@@ -1,3 +1,4 @@
+<<<<<<< Upstream, based on origin/master
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Date"%>
@@ -188,3 +189,252 @@
     </body>
 </html>
 
+=======
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>venta</title>
+        
+    </head>
+    <style>
+        /* estado descactivado */
+        markdesactivado{
+
+            background-color: #ff1744;
+            color: black;
+            border-radius: 71px 69px 72px 71px;
+            -moz-border-radius: 71px 69px 72px 71px;
+            -webkit-border-radius: 71px 69px 72px 71px;
+        }
+        /* estado activo */
+        markactivo{
+
+            background-color: #00FF00;
+            color: black;
+            border-radius: 71px 69px 72px 71px;
+            -moz-border-radius: 71px 69px 72px 71px;
+            -webkit-border-radius: 71px 69px 72px 71px;
+        }
+    </style>
+    <body>
+
+        <!--cabecera de Menu -->
+        <%@include file="FrmAdmin.jsp" %>
+        <%@include file="css-js.jsp" %>
+
+        <!-- pageContent -->
+        <section class="full-width pageContent">
+            <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+                <div class="mdl-tabs__tab-bar">
+                    <a href="#tabNewVenta" class="mdl-tabs__tab is-active">NUEVO</a>
+                    <a href="#tabListVenta" class="mdl-tabs__tab">liSTAR</a>
+                </div>
+                <div class="mdl-tabs__panel is-active" id="tabNewVenta">
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
+                            <div class="full-width panel mdl-shadow--2dp">
+                                <div class="full-width panel-tittle bg-primary text-center tittles">
+                                    Nueva Venta
+                                </div>
+                            </div></div></div>
+                    <div class="d-flex">
+                        <div class="col-lg-5 parte01">
+                            <div class="card">
+                                <form></form>
+                                <form action="Controlador?menu=NuevaVenta" method="POST">
+                                    <div class="card-body">
+                                        <!--DATOS DEL PRODUCTO-->
+                                        <div class="form-group">
+                                            <label>Datos del Cliente</label>
+                                        </div>
+                                        <select name="txtidcliente" class="mdl-textfield__input" required>
+                                            <option style="background-color: white;" value=" disabled" selected="">Seleciona Cliente</option>
+                                        </select>  <BR><BR>                          
+                                        <!--DATOS DEL PRODUCTO-->
+                                        <div class="form-group">
+                                            <label>Datos Producto</label>
+                                        </div>
+                                        <div class="form-group d-flex">
+                                            <div class="col-sm-6 d-flex">
+                                                <input type="text" name="codigoproducto" value="${producto.getId()}" class="form-control" placeholder="Codigo">
+                                                <button  type="submit" name="accion" value="BuscarProducto" class="btn btn-outline-info">Buscar</button>
+
+                                            </div>                           
+                                            <div class="col-sm-6">
+                                                <input type="text" name="nomproducto" value="${producto.getNom()}" placeholder="Datos Producto" class="form-control">
+                                            </div>  
+                                        </div>
+                                        <div class="form-group d-flex">
+                                            <div class="col-sm-6 d-flex">
+                                                <input type="text" name="precio" value="${producto.getPre()}" class="form-control" placeholder="S/.0.00">                                
+                                            </div>                           
+                                            <div class="col-sm-3">
+                                                <input type="number" value="1" name="cant" placeholder="" class="form-control">
+                                            </div>  
+                                            <div class="col-sm-3">
+                                                <input type="text" name="stock" value="${producto.getStock()}" placeholder="Stock" class="form-control">
+                                            </div><br><br>  
+                                        </div><br>
+                                        <br><br>
+                                        <!--BOTON AGREGAR PRODUCTO AL REGISTRO-->
+                                        <div class="form-group">
+                                            <div class="col-sm">
+                                                <button type="submit" name="accion" value="Agregar" class="btn btn-outline-primary">Agregar Producto</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="card parte02">                    
+                                <div class="card-body">
+                                    <div class="d-flex ml-auto col-sm-6">
+                                        <label class="text-right mt-2 col-sm-6">NRO. SERIE</label>
+                                        <input readonly="" type="text" name="numeroserie" class="form-control text-center" value="${nserie}" style="font-weight: bold;font-size: 18px">
+                                    </div>                      
+                                    <br>
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr class="text-center">
+                                                <th>N°</th>
+                                                <th>ID</th>
+                                                <th>PRODUCTO</th>
+                                                <th>PRECIO</th>
+                                                <th>CANTIDAD</th>
+                                                <th>SUBTOTAL</th>                                    
+                                                <th class="accion">ACCION</th>                                    
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <c:forEach var="list" items="${lista}">
+                                            <tr class="text-center">
+                                                <td>${list.getItem()}</td>
+                                                <td>${list.getIdproducto()}</td>
+                                                <td>${list.getDescripcionP()}</td>
+                                                <td>${list.getPrecio()}</td>
+                                                <td>${list.getCantidad()}</td>
+                                                <td>${list.getSubtotal()}</td>
+                                                <td class="d-flex">
+                                                    <a  class="btn btn-danger" href="Controlador?menu=NuevaVenta&accion=Delete" style="margin-left: 5px">Delete</a>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="card-footer" >
+                                    <div class="row">
+
+                                        <div class="col-sm-6">
+                                            <a href="Controlador?menu=NuevaVenta&accion=GenerarVenta" onclick="print()" class="btn btn-success">Generar Venta</a>
+                                            <a  class="btn btn-danger" href="Controlador?menu=NuevaVenta&accion=Delete" style="margin-left: 5px">Cancelar</a>
+                                        </div>
+                                        <div class="col-sm-6 ml-auto d-flex">                                
+                                            <label class=" col-sm-6 text-right mt-2">Total a Pagar</label>                                                       
+                                            <input type="text" name="txtTotal" value="S/.${totalpagar}0" class="form-control text-center font-weight-bold" style="font-size: 18px;">
+                                        </div>
+                                    </div>                        
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>                            
+
+                </div>
+                <div class="full-width panel-content">
+
+
+
+
+                    <div class="mdl-tabs__panel" id="tabListVenta">
+                        <div class="mdl-grid">
+                            <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
+                                <div class="full-width panel-tittle bg-success text-center tittles">
+                                    lista de ventas
+                                </div>
+                                <form action="#">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+                                        <label class="mdl-button mdl-js-button mdl-button--icon" for="buscar">
+                                            <i class="fas fa-search"></i>
+                                        </label>
+                                        <div class="mdl-textfield__expandable-holder">
+                                            <input onkeyup="doSearch()" class="mdl-textfield__input" type="text" id="buscar">
+                                            <label class="mdl-textfield__label"></label>
+                                        </div>
+                                    </div>
+                                </form>
+                                <table   id="datos" number-per-page="4" current-page="" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
+                                    <thead>
+
+                                        <tr>
+
+
+                                            <th class="mdl-data-table__cell--non-numeric">Cliente</th>
+                                            <th>Tipo Comprobante</th>
+                                            <th>Serie Comprobante</th>
+                                            <th>Fecha</th>
+                                            <th>total</th>
+                                            <th>Estado</th>
+                                            <th>opcion</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <!--%  ventaDAO pdao=new ventaDAO();
+                                        List<venta>listS=pdao.ListadoVenta();
+                                        Iterator<venta>iterr=listS.iterator();
+                                     venta pro=null;
+                                       double total=0;
+                                        while (iterr.hasNext()) {
+                                        pro = iterr.next(); %>
+
+                                            <tr>
+                                                <td class="mdl-data-table__cell--non-numeric"><--%= clienteDAO.getcliente(pro.getIdcliente())%></td>
+                                                    <td><--%= pro.getTipo_comprobante()%></td>
+                                                    <td><--%= pro.getSerie_comprobante()%></td>
+                                                       <td><--%= pro.getFecha_hora()%></td>
+                                                       <td>$<--%= pro.getTotal()%></td>
+                                                        <-- % total=total+pro.getTotal();%>
+                                                          <--% String Est ado=pro.getEstado();
+                                                     if(Estado.equalsIgnoreCase("Vendido")){ %>
+                                                         
+                                                          <td><markactivo><---%= Estado %></markactivo></td>   
+                                                      <--%   }else{ %>
+                                                       
+                                                             <td><markdesactivado><--%= Estado %></markdesactivado></td>    
+                                                    <--%     }
+                                                    %>
+                                                    <td>
+                                                      
+                                                      <--% 
+                                                     if(Estado.equalsIgnoreCase("Vendido")){ %>
+                                                         
+                                                        <a href="DetalleVControlador?accion=estado&id=<--%= pro.getId()%>" class="btn btn-danger" ><img src="Imagen/delete.png" title="Anular"/></a>
+                                                       
+                                                      <--%   }else{ %>
+                                                       
+                                                    <--%     }
+                                                    %>
+                                                         <a href="DetalleVControlador?accion=reporte&id=<--%= pro.getId()%>" class="btn btn-success" ><img src="Imagen/lpdf.png" title="Reporte"/></a>
+                                                    
+                                                    </td>
+                                            </tr>
+                                            <--%}%!-->
+
+
+                                    </tbody>
+                                </table>
+                                <h4 style="background-color: white; color:navy">Total Vendido $ <!--%=total%--></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+    </body>
+
+</html>
+>>>>>>> c6365be Conexion db,empleado

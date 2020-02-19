@@ -5,83 +5,104 @@
  */
 package config;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Conexion {
-
-    private java.sql.Connection connection = null;
-    private final String url = "jdbc:sqlserver://";
-    private final String serverName = "DESKTOP-F9UQSAA\\SQLEXPRESS";
-    private final String portNumber = "1433";
-    private final String databaseName = "ERP2020";
-    private final String userName = "sa";
-    private final String password = "sa";
-    private final String statement = "select * from clientes;";
-    // Informs the driver to use server a side-cursor,
-    // which permits more than one active statement
-    // on a connection.
-    //private final String selectMethod = "Direct";
-
-    // Constructor
-    public Conexion() {
-    }
-
-    private String getConnectionUrl() {
-        return url + serverName + ":" + portNumber + ";databaseName=" + databaseName + ";";//+"selectMethod="+ selectMethod + ";";
-    }
-
-    public java.sql.Connection getConnection() {
+private static Connection connection;
+private static String url="jdbc:sqlserver://DESKTOP-F9UQSAA\\SQLEXPRESS:1433;databaseName=ERP2020";
+private static String userName="sa";
+private static String password="sa";
+    public static Connection conectar() throws ClassNotFoundException{
+        
+        System.out.println("Se esta tratando de conectar a bd");
         try {
-            Class.forName("Microsoft SQL Server 2005");
-            connection = java.sql.DriverManager.getConnection(getConnectionUrl(),
-                    userName, password);
-            if (connection != null) {
-                System.out.println("Connection Successful!");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error Trace in getConnection() : " + e.getMessage());
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            connection=DriverManager.getConnection(url,"sa","sa");
+            System.out.println("conexion exitosa");
+        } catch (SQLException e) {
+            System.out.println("Conexion no establecida ... \n"+e.getMessage());
         }
         return connection;
     }
-
-    /*
-  * Display the driver properties, database details
-     */
-    public void displayDbProperties() {
-        java.sql.DatabaseMetaData dm = null;
-        java.sql.ResultSet result = null;
+    public static Connection conectar(String user,String pwd) throws ClassNotFoundException{
+        String url="jdbc:sqlserver://localhost:1433;databaseName=ERP2020";
         try {
-            connection = this.getConnection();
-            if (connection != null) {
-                dm = connection.getMetaData();
-                System.out.println("Driver Information");
-                System.out.println("\tDriver Name: " + dm.getDriverName());
-                System.out
-                        .println("\tDriver Version: " + dm.getDriverVersion());
-                System.out.println("\nDatabase Information ");
-                System.out.println("\tDatabase Name: " + dm.getDatabaseProductName());
-                System.out.println("\tDatabase Version: " + dm.getDatabaseProductVersion());
-
-                Statement select = connection.createStatement();
-                result = select.executeQuery(statement);
-
-                while (result.next()) {
-                    System.out.println("Nombre: " + result.getString(1) + "\n");
-                    System.out.println("Apellido: " + result.getString(2) + "\n");
-                    System.out.println("Dni: " + result.getString(3) + "\n");
-                }
-                result.close();
-                result = null;
-                closeConnection();
-            } else {
-                System.out.println("Error: No active Connection");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            connection=DriverManager.getConnection(url,user,pwd);
+        } catch (SQLException e) {
+//            JOptionPane.showMessageDialog(null,"Conexion no establecida ... \n"+e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
         }
-        dm = null;
+        return connection;
     }
+    public void desconectar(){
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            System.out.println("No existia una conexion a SQL que cerrar");
+        }
+    }
+    public void ejecutar(String sql) throws ClassNotFoundException{
+        Connection con= conectar();
+        Statement declara;
+        try {
+            declara=con.createStatement();
+            ResultSet respuesta=declara.executeQuery(sql);
+            desconectar();
+        } catch (SQLException e) {
+            System.out.println("Conexion no establecida ... \n"+e.getMessage());
+        }
+    }
+    public ResultSet consultar(String sql) throws ClassNotFoundException{
+        Connection con= conectar();
+        Statement declara;
+        try {
+            declara=con.createStatement();
+            ResultSet respuesta=declara.executeQuery(sql);
+            return respuesta;
+        } catch (SQLException e) {
+            System.out.println("Conexion no establecida ... \n"+e.getMessage());
+        }
+        return null;
+    }
+//    public void displayDbProperties() {
+//        java.sql.DatabaseMetaData dm = null;
+//        java.sql.ResultSet result = null;
+//        try {
+//            connection = this.getConnection();
+//            if (connection != null) {
+//                dm = connection.getMetaData();
+//                System.out.println("Driver Information");
+//                System.out.println("\tDriver Name: " + dm.getDriverName());
+//                System.out
+//                        .println("\tDriver Version: " + dm.getDriverVersion());
+//                System.out.println("\nDatabase Information ");
+//                System.out.println("\tDatabase Name: " + dm.getDatabaseProductName());
+//                System.out.println("\tDatabase Version: " + dm.getDatabaseProductVersion());
+//
+//                Statement select = connection.createStatement();
+//                result = select.executeQuery(statement);
+//
+//                while (result.next()) {
+//                    System.out.println("Nombre: " + result.getString(1) + "\n");
+//                    System.out.println("Apellido: " + result.getString(2) + "\n");
+//                    System.out.println("Dni: " + result.getString(3) + "\n");
+//                }
+//                result.close();
+//                result = null;
+//                closeConnection();
+//            } else {
+//                System.out.println("Error: No active Connection");
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        dm = null;
+//    }
 
     public void closeConnection() {
         try {
@@ -92,5 +113,26 @@ public class Conexion {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+     public String logueo(String email, String contrasena) throws ClassNotFoundException{
+        Connection con;
+         System.out.println("Estas en el logueo ----------");
+        PreparedStatement ps;
+        ResultSet rs;
+        String idPerfil = "";
+        String sql="select tipo from Empleado where email='"+email+"'and contrasena='"+contrasena+"'";
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            con=conectar();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            System.out.println("yes");
+            while (rs.next()) {                
+                idPerfil= rs.getString('A');
+            }
+        } catch (SQLException e) {
+            System.out.println("nel"+e);
+        }
+        return idPerfil;
     }
 }
