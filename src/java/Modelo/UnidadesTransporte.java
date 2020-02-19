@@ -14,16 +14,18 @@ public class UnidadesTransporte {
     String placas;
     String marca;
     String modelo;
-    blob anio;
     int capacidad;
 
-    public UnidadesTransporte(int idUnidadTransporte, String placas, String marca, String modelo, blob anio, int capacidad) {
+    public UnidadesTransporte(int idUnidadTransporte, String placas, String marca, String modelo, int capacidad) {
         this.idUnidadTransporte = idUnidadTransporte;
         this.placas = placas;
         this.marca = marca;
         this.modelo = modelo;
-        this.anio = anio;
         this.capacidad = capacidad;
+    }
+
+    UnidadesTransporte() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int getIdUnidadTransporte() {
@@ -56,14 +58,6 @@ public class UnidadesTransporte {
 
     public void setModelo(String modelo) {
         this.modelo = modelo;
-    }
-
-    public blob getAnio() {
-        return anio;
-    }
-
-    public void setAnio(blob anio) {
-        this.anio = anio;
     }
 
     public int getCapacidad() {
