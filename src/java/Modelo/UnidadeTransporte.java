@@ -18,6 +18,9 @@ public class UnidadeTransporte {
     String anio ;
     String capacidad ;
 
+    public UnidadeTransporte() {
+    }
+
     public UnidadeTransporte(int idUnidadTransporte, String placas, String marca, String modelo, String anio, String capacidad) {
         this.idUnidadTransporte = idUnidadTransporte;
         this.placas = placas;
@@ -26,10 +29,6 @@ public class UnidadeTransporte {
         this.anio = anio;
         this.capacidad = capacidad;
     }
-
-    public UnidadeTransporte() {
-    }
-
 
     public int getIdUnidadTransporte() {
         return idUnidadTransporte;
@@ -78,6 +77,6 @@ public class UnidadeTransporte {
     public void setCapacidad(String capacidad) {
         this.capacidad = capacidad;
     }
-    
+
     
 }

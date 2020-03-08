@@ -9,11 +9,12 @@ String sexo;
 String tipo;
 String email;
 String contra;
+String estatus;
 
     public Empleado() {
     }
 
-    public Empleado(int id, String nombre, String paterno, String materno, String sexo, String tipo, String email, String contra) {
+    public Empleado(int id, String nombre, String paterno, String materno, String sexo, String tipo, String email, String contra, String estatus) {
         this.id = id;
         this.nombre = nombre;
         this.paterno = paterno;
@@ -22,8 +23,9 @@ String contra;
         this.tipo = tipo;
         this.email = email;
         this.contra = contra;
+        this.estatus = estatus;
     }
-    
+
     public int getId() {
         return id;
     }
@@ -86,6 +88,14 @@ String contra;
 
     public void setContra(String contra) {
         this.contra = contra;
+    }
+
+    public String getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(String estatus) {
+        this.estatus = estatus;
     }
 
 

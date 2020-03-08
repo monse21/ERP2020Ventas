@@ -14,7 +14,7 @@ import java.sql.Statement;
 
 public class Conexion {
 private static Connection connection;
-private static String url="jdbc:sqlserver://DESKTOP-F9UQSAA\\SQLEXPRESS:1433;databaseName=ERP2020";
+private static String url="jdbc:sqlserver://DELL-PC\\SQL_SERVER_ENT:1433;databaseName=ERP2020";
 private static String userName="sa";
 private static String password="sa";
     public static Connection conectar() throws ClassNotFoundException{
@@ -69,41 +69,6 @@ private static String password="sa";
         }
         return null;
     }
-//    public void displayDbProperties() {
-//        java.sql.DatabaseMetaData dm = null;
-//        java.sql.ResultSet result = null;
-//        try {
-//            connection = this.getConnection();
-//            if (connection != null) {
-//                dm = connection.getMetaData();
-//                System.out.println("Driver Information");
-//                System.out.println("\tDriver Name: " + dm.getDriverName());
-//                System.out
-//                        .println("\tDriver Version: " + dm.getDriverVersion());
-//                System.out.println("\nDatabase Information ");
-//                System.out.println("\tDatabase Name: " + dm.getDatabaseProductName());
-//                System.out.println("\tDatabase Version: " + dm.getDatabaseProductVersion());
-//
-//                Statement select = connection.createStatement();
-//                result = select.executeQuery(statement);
-//
-//                while (result.next()) {
-//                    System.out.println("Nombre: " + result.getString(1) + "\n");
-//                    System.out.println("Apellido: " + result.getString(2) + "\n");
-//                    System.out.println("Dni: " + result.getString(3) + "\n");
-//                }
-//                result.close();
-//                result = null;
-//                closeConnection();
-//            } else {
-//                System.out.println("Error: No active Connection");
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        dm = null;
-//    }
-
     public void closeConnection() {
         try {
             if (connection != null) {

@@ -1,4 +1,4 @@
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@page contentType="text/html" pageEncoding="UTF-8"%>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!DOCTYPE html>
@@ -16,28 +16,32 @@
                 <div class="col-sm-4">
                     <div class="card">
                         <div class="card-body">
-                            <form onsubmit="return Validar()"action="Controlador?menu=Empleado" method="POST">
+                            <form action="Controlador?menu=UnidadeTransportecrud&accion=Agregar" method="POST">
                                 <div class="form-group">
-                                    <label>Contraseña</label>
-                                    <input type="text" id="nombre" value="${empleado.getDni()}" name="txtDni" class="form-control" >
+                                    <label>idUnidades de transporte</label>
+                                    <input type="number" id="idUnidadesTransporte"  value="${UnidadTransporte.getIdUnidadTransporte()}" name="txtIdUnidadTransporte" class="form-control" >
                                 </div>
                                 <div class="form-group">
-                                    <label>Nombres</label>
-                                    <input type="text" value="${empleado.getNom()}" name="txtNombres" class="form-control" pattern="-?[A-Za-záéíóúÁÉÍÓÚ ]*(\.[0-9]+)?" >
+                                    <label>Marcas</label>
+                                    <input type="text" value="${UnidadTransporte.getMarca()}" name="txtMarcas" class="form-control"  >
                                 </div>
                                 <div class="form-group">
-                                    <label>Telefono</label>
-                                    <input type="number" value="${empleado.getTel()}" name="txtTel" class="form-control" pattern="-?[0-9]*(\.[0-9]+)?" >
+                                    <label>Placas</label>
+                                    <input type="number" value="${UnidadTransporte.getPlacas()}" name="txtPlacas" class="form-control"  >
                                 </div>
                                 <div class="form-group">
-                                    <label>Estado</label>
-                                    <input type="number" value="${empleado.getEstado()}" name="txtEstado" class="form-control" >
+                                    <label>Modelo</label>
+                                    <input type="number" value="${UnidadTransporte.getModelo}" name="txtModelo" class="form-control" >
                                 </div>
                                 <div class="form-group">
-                                    <label>Usuario</label>
-                                    <input type="text" value="${UnidadTransporte.getIdUnidadTransporte()}" name="txtUser" class="form-control" >
+                                    <label>Anio</label>
+                                    <input type="text" value="${UnidadTransporte.getAnio()}" name="txtAnio" class="form-control" >
                                 </div>
-                                <input type="submit" name="accion" onsubmit="return Validar();" value="Agregar" class="btn btn-primary">
+                                <div class="form-group">
+                                    <label>Capacidad</label>
+                                    <input type="text" value="${UnidadTransporte.getCapacidad()}" name="txtCapacidad" class="form-control" >
+                                </div>
+                                <input type="submit" name="accion" value="Agregar" class="btn btn-info">
                                 <input type="submit" name="accion" value="Actualizar" class="btn btn-success">
                             </form>
                         </div>                         
@@ -51,30 +55,30 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>NOMBRE</th>
-                                        <th>A.PATRENO</th>
-                                        <th>A.MATERNO</th>
-                                        <th>SEXO</th>
-                                        <th>TIPO</th>
+                                        <th>MARCA</th>
+                                        <th>PLACAS</th>
+                                        <th>MODELO</th>
+                                        <th>ANIO</th>
+                                        <th>CAPACIDAD</th>
                                         <th>ACCIONES</th>
                                     </tr>
                                 </thead>
                                 <tbody> 
-                                        <c:forEach var="em" items="${listar}">
+                                    <c:forEach var="UT" items="${listar}">
                                             <tr>
-                                            <td>${em.getId()}</td>
-                                            <td>${em.getNombre()}</td>
-                                            <td>${em.getPaterno()}</td>
-                                            <td>${em.getMaterno()}</td>
-                                            <td>${em.getSexo()}</td>
-                                            <td>${em.getTipo()}</td>
+                                            <td>${UT.getIdUnidadTransporte()}</td>
+                                            <td>${UT.getMarca()}</td>
+                                            <td>${UT.getPlacas()}</td>
+                                            <td>${UT.getModelo()}</td>
+                                            <td>${UT.getAnio()}</td>
+                                            <td>${UT.getCapacidad()}</td>
                                             <td>
-                                                <a class="btn btn-warning" href="Controlador?menu=Empleado&accion=Editar&id=${em.getId()}">Editar</a>
-                                                <a class="btn btn-danger" href="Controlador?menu=Empleado&accion=Delete&id=${em.getId()}">Delete</a>
+                                                <a class="btn btn-warning" href="Controlador?menu=Empleado&accion=Editar&id=${UT.getIdUnidadTransporte()}">Editar</a>
+                                                <a class="btn btn-danger" href="Controlador?menu=Empleado&accion=Delete&id=${UT.getIdUnidadTransporte()}">Delete</a>
                                             </td>
                                             </tr>
                                     </c:forEach>
-
+                                       
                                 </tbody>
                             </table>
                         </div>

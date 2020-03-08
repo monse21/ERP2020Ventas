@@ -136,7 +136,7 @@
 						<ul class="full-width menu-principal sub-menu-options">
 						<li class="full-width divider-menu-h"></li>	
 							<li class="full-width">
-                                                            <a href="proveedor.jsp" class="full-width">
+                                                            <a href="Controlador?menu=UnidadeTransportecrud&accion=Listar" class="full-width">
                                                                     <div class="navLateral-body-cl">
                                                                     <i class="zmdi zmdi-account "></i>
                                                                     </div>
@@ -185,15 +185,13 @@
                                                         <li class="full-width">
                                                             <a href="Controlador?menu=Empleadocrud&accion=Listar" class="full-width">
 									<div class="navLateral-body-cl">
-										<i class="zmdi zmdi-account"></i>
+									<i class="zmdi zmdi-account"></i>
 									</div>
 									<div class="navLateral-body-cr hide-on-tablet">
 										EMPLEADOS
 									</div>
 								</a>
-							</li>
-							
-							
+							</li>	
 						</ul>
 					</li>
 					<!--fin acceso---->

@@ -1,17 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controlador;
 
 import Modelo.Empleado;
 import Modelo.EmpleadoDAO;
+import Modelo.UnidadeTransporte;
+import Modelo.UnidadeTransporteDAO;
 import config.Conexion;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,20 +18,10 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ControladorValida extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -49,15 +34,6 @@ public class ControladorValida extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -66,23 +42,18 @@ public class ControladorValida extends HttpServlet {
         
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("do post");
+                System.out.println("do post");
                 String accion = request.getParameter("accion");
                 Empleado em=new Empleado();
                 EmpleadoDAO edao=new EmpleadoDAO();
+                UnidadeTransporte UT = new UnidadeTransporte();
+                UnidadeTransporteDAO udao= new UnidadeTransporteDAO();
                 Conexion cn = new Conexion();
-        if (accion.equalsIgnoreCase("Ingresar")) {
+
+            if (accion.equalsIgnoreCase("Ingresar")) {
             String user = request.getParameter("txtuser");
             String pass = request.getParameter("txtpass");
                     try {
@@ -91,9 +62,7 @@ public class ControladorValida extends HttpServlet {
                     } catch (ClassNotFoundException ex) {
                         System.out.println("Error de la clase "+ex.getMessage());
                     }
-                    System.out.println(em.getEmail());
-                    System.out.println(user);
-                    System.out.println(pass);
+
             if (em.getEmail() != null) {
                 System.out.println("El usuario no es nulo");
                 switch (em.getTipo()) {
@@ -103,14 +72,12 @@ public class ControladorValida extends HttpServlet {
                         break;
                     case "":
                         request.getRequestDispatcher("index.jsp").forward(request, response);
-                        System.out.println("hola");
+                        System.out.println("hola");     
                         break;
-                }
-                
+                }    
             } else {
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             }
-            
         } else {
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
