@@ -14,7 +14,7 @@
 			<nav class="navBar-options-list">
 				<ul class="list-unstyle">
 					<li style="float:rigth" class="btn-exit" id="btn-exi">
-						<i class="fas fa-door-open"></i>
+						<i class="fas fa-door-open">${usuario.getNombre()}</i>
 						<div class="mdl-tooltip" for="btn-exi">Salir</div>
 					</li>
                                       
@@ -42,7 +42,7 @@
 				<figcaption class="navLateral-body-cr hide-on-tablet">
 					<span>
 						Bienvenido<br>
-						<small>Admin</small>
+						<small>${usuario.getNombre()}</small>
 					</span>
 				</figcaption>
 			</figure>

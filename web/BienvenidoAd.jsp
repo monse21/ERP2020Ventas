@@ -12,7 +12,7 @@
 	
 	<!-- pageContent -->
 	<section class="full-width pageContent">
-            <center><h1>Bienvenido Gerente </h1></center>
+            <center><h1>Bienvenido ${usuario.getNombre()} </h1></center>
 		
 	</section>
                                                                            

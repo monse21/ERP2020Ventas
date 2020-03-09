@@ -25,7 +25,7 @@ public class EmpleadoDAO {
 
 public Empleado validar(String email,String contrasena) throws ClassNotFoundException{
     Empleado em= new Empleado();
-    String sql = "select idEmpleado,nombre,apaterno,amaterno,tipo,sexo,email,contrasena,estatus from Empleado where email='"+email+"' and contrasena='"+contrasena+"';";
+    String sql = "select idEmpleado,nombre,apaterno,amaterno,sexo,fotografia,tipo,email,contrasena from Empleado where email='"+email+"' and contrasena='"+contrasena+"';";
     con=Conexion.conectar();
     try {
             rs = cn.consultar(sql);
@@ -38,7 +38,7 @@ public Empleado validar(String email,String contrasena) throws ClassNotFoundExce
             em.setTipo(rs.getString("tipo"));
             em.setEmail(rs.getString("email"));
             em.setContra(rs.getString("contrasena"));
-            em.setEstatus(rs.getString("estatus"));
+           
         }
     } catch (Exception e) {
         System.out.println("eror: "+e.getMessage());
