@@ -16,30 +16,30 @@
                 <div class="col-sm-4">
                     <div class="card">
                         <div class="card-body">
-                            <form action="Controlador?menu=UnidadeTransportecrud&accion=Agregar" method="POST">
+                            <form action="Controlador?menu=UnidadeTransportecrud" method="POST">
                                 <div class="form-group">
                                     <label>idUnidades de transporte</label>
-                                    <input type="number" id="idUnidadesTransporte"  value="${UnidadTransporte.getIdUnidadTransporte()}" name="txtIdUnidadTransporte" class="form-control" >
-                                </div>
-                                <div class="form-group">
-                                    <label>Marcas</label>
-                                    <input type="text" value="${UnidadTransporte.getMarca()}" name="txtMarcas" class="form-control"  >
+                                    <input type="number" id="idUnidadesTransporte"  value="${UT.getIdUnidadTransporte()}" name="txtIdUnidadTransporte" class="form-control" >
                                 </div>
                                 <div class="form-group">
                                     <label>Placas</label>
-                                    <input type="number" value="${UnidadTransporte.getPlacas()}" name="txtPlacas" class="form-control"  >
+                                    <input type="Text" value="${UT.getMarca()}" name="txtMarcas" class="form-control"  >
+                                </div>
+                                <div class="form-group">
+                                    <label>Marca</label>
+                                    <input type="Tet" value="${UT.getPlacas()}" name="txtPlacas" class="form-control"  >
                                 </div>
                                 <div class="form-group">
                                     <label>Modelo</label>
-                                    <input type="number" value="${UnidadTransporte.getModelo}" name="txtModelo" class="form-control" >
+                                    <input type="number" value="${UT.getModelo()}" name="txtModelo" class="form-control" >
                                 </div>
                                 <div class="form-group">
                                     <label>Anio</label>
-                                    <input type="text" value="${UnidadTransporte.getAnio()}" name="txtAnio" class="form-control" >
+                                    <input type="number" value="${UT.getAnio()}" name="txtAnio" class="form-control" >
                                 </div>
                                 <div class="form-group">
                                     <label>Capacidad</label>
-                                    <input type="text" value="${UnidadTransporte.getCapacidad()}" name="txtCapacidad" class="form-control" >
+                                    <input type="number" value="${UT.getCapacidad()}" name="txtCapacidad" class="form-control" >
                                 </div>
                                 <input type="submit" name="accion" value="Agregar" class="btn btn-info">
                                 <input type="submit" name="accion" value="Actualizar" class="btn btn-success">
@@ -55,8 +55,8 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>MARCA</th>
                                         <th>PLACAS</th>
+                                        <th>MARCA</th>
                                         <th>MODELO</th>
                                         <th>ANIO</th>
                                         <th>CAPACIDAD</th>
@@ -73,7 +73,7 @@
                                             <td>${UT.getAnio()}</td>
                                             <td>${UT.getCapacidad()}</td>
                                             <td>
-                                                <a class="btn btn-warning" href="Controlador?menu=Empleado&accion=Editar&id=${UT.getIdUnidadTransporte()}">Editar</a>
+                                                <a class="btn btn-warning" href="Controlador?menu=UnidadeTransportecrud&accion=Editar&id=${UT.getIdUnidadTransporte()}">Editar</a>
                                                 <a class="btn btn-danger" href="Controlador?menu=Empleado&accion=Delete&id=${UT.getIdUnidadTransporte()}">Delete</a>
                                             </td>
                                             </tr>

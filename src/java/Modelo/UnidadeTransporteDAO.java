@@ -53,8 +53,8 @@ public class UnidadeTransporteDAO {
             con = Conexion.conectar();
             ps = con.prepareStatement(sql);
             ps.setInt(1, UT.getIdUnidadTransporte());
-            ps.setString(2, UT.getMarca() );
-            ps.setString(3, UT.getPlacas() );
+            ps.setString(3, UT.getMarca() );
+            ps.setString(2, UT.getPlacas() );
             ps.setString(4, UT.getModelo() );
             ps.setString(5, UT.getAnio() );
             ps.setString(6, UT.getCapacidad() ); 
@@ -66,21 +66,40 @@ public class UnidadeTransporteDAO {
     
     
     public int Actualizar ( UnidadeTransporte UT ){
-     String sql="Update UnidadesTransporte  set IdUnidadTransporte=? ,Marca=? ,Placas=? ,Modelo=? ,Anio=? ,Capacidad=? where IdUnidadTransporte=? ";
+     String sql="Update UnidadesTransporte set placas=?,marca=?,modelo=?,anio=?,capacidad=? where idUnidadTransporte=?";
         try {
             con = Conexion.conectar();
             ps = con.prepareStatement(sql);
-            ps.setInt(1, UT.getIdUnidadTransporte());
-            ps.setString(2, UT.getMarca() );
-            ps.setString(3, UT.getPlacas() );
-            ps.setString(4, UT.getModelo() );
-            ps.setString(5, UT.getAnio() );
-            ps.setString(6, UT.getCapacidad() ); 
+            ps.setInt(6, UT.getIdUnidadTransporte());
+            ps.setString(1, UT.getMarca() );
+            ps.setString(2, UT.getPlacas() );
+            ps.setString(3, UT.getModelo() );
+            ps.setString(4, UT.getAnio() );
+            ps.setString(5, UT.getCapacidad() ); 
+            System.out.println("Estoy Actualizando" );
             ps.executeUpdate();
+            
         } catch (Exception e) {
         }
         return r;
     }
 
-
+    public UnidadeTransporte listarId(int id){
+    String sql="select * from UnidadesTransporte where IdUnidadTransporte="+id;
+        try {
+            con=Conexion.conectar();
+            ps=con.prepareStatement(sql);
+            rs=ps.executeQuery();
+            while (rs.next()) {
+                UT.setIdUnidadTransporte(rs.getInt(1));
+                UT.setMarca(rs.getString(3));
+                UT.setPlacas(rs.getString(2));
+                UT.setModelo(rs.getString(4));
+                UT.setAnio(rs.getString(5));
+                UT.setCapacidad(rs.getString(6));
+            }
+        } catch (Exception e) {
+        }
+    return UT;
+    }
 }

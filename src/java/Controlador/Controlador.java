@@ -64,7 +64,6 @@ public class Controlador extends HttpServlet {
                         break;
                         
                     case"Agregar":
-                        
                         UT.setIdUnidadTransporte(Integer.parseInt(request.getParameter("txtIdUnidadTransporte")));
                         UT.setMarca(request.getParameter("txtMarcas"));
                         UT.setPlacas(request.getParameter("txtPlacas"));
@@ -76,7 +75,24 @@ public class Controlador extends HttpServlet {
                     break;
                         
                     case "Editar":
+                        idu=Integer.parseInt(request.getParameter("id"));
+                        UT = udao.listarId(idu);
+                        request.setAttribute("UT", UT);
+                     request.getRequestDispatcher("Controlador?menu=UnidadeTransportecrud&accion=Listar").forward(request, response);     
                     break;
+                    
+                    case "Actualizar":
+                        UT.setIdUnidadTransporte(Integer.parseInt(request.getParameter("txtIdUnidadTransporte")));
+                        UT.setMarca(request.getParameter("txtMarcas"));
+                        UT.setPlacas(request.getParameter("txtPlacas"));
+                        UT.setModelo(request.getParameter("txtModelo"));
+                        UT.setAnio(request.getParameter("txtAnio"));
+                        UT.setCapacidad(request.getParameter("txtCapacidad"));
+                        
+                        udao.Actualizar(UT);
+                        request.getRequestDispatcher("Controlador?menu=UnidadeTransportecrud&accion=Listar").forward(request, response);
+                    break;
+                    
                     case "eliminar":
                     break;
                     default:
