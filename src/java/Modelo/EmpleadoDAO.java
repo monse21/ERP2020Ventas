@@ -25,7 +25,7 @@ public class EmpleadoDAO {
 
 public Empleado validar(String email,String contrasena) throws ClassNotFoundException{
     Empleado em= new Empleado();
-    String sql = "select idEmpleado,nombre,apaterno,amaterno,sexo,fotografia,tipo,email,contrasena from Empleado where email='"+email+"' and contrasena='"+contrasena+"';";
+    String sql = "select idEmpleado,nombre,apaterno,amaterno,sexo,tipo,email,contrasena from Empleado where email='"+email+"' and contrasena='"+contrasena+"';";
     con=Conexion.conectar();
     try {
             rs = cn.consultar(sql);

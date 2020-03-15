@@ -24,7 +24,7 @@ public class UnidadeTransporteDAO {
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
-    UnidadeTransporte UT =new UnidadeTransporte();
+    UnidadeTransporte U =new UnidadeTransporte();
       int r;
     public List listar() {
     String sql="select * from UnidadesTransporte";
@@ -34,6 +34,7 @@ public class UnidadeTransporteDAO {
             ps=con.prepareStatement(sql);
             rs=ps.executeQuery();
             while (rs.next()) {
+                UnidadeTransporte UT =new UnidadeTransporte();
                 UT.setIdUnidadTransporte(rs.getInt(1));
                 UT.setMarca(rs.getString(2));
                 UT.setPlacas(rs.getString(3));
@@ -91,15 +92,15 @@ public class UnidadeTransporteDAO {
             ps=con.prepareStatement(sql);
             rs=ps.executeQuery();
             while (rs.next()) {
-                UT.setIdUnidadTransporte(rs.getInt(1));
-                UT.setMarca(rs.getString(3));
-                UT.setPlacas(rs.getString(2));
-                UT.setModelo(rs.getString(4));
-                UT.setAnio(rs.getString(5));
-                UT.setCapacidad(rs.getString(6));
+                U.setIdUnidadTransporte(rs.getInt(1));
+                U.setMarca(rs.getString(3));
+                U.setPlacas(rs.getString(2));
+                U.setModelo(rs.getString(4));
+                U.setAnio(rs.getString(5));
+                U.setCapacidad(rs.getString(6));
             }
         } catch (Exception e) {
         }
-    return UT;
+    return U;
     }
 }

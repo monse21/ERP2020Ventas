@@ -31,7 +31,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Modelo</label>
-                                    <input type="number" value="${UT.getModelo()}" name="txtModelo" class="form-control" >
+                                    <input type="text" value="${UT.getModelo()}" name="txtModelo" class="form-control" >
                                 </div>
                                 <div class="form-group">
                                     <label>Anio</label>
@@ -44,14 +44,14 @@
                                 <input type="submit" name="accion" value="Agregar" class="btn btn-info">
                                 <input type="submit" name="accion" value="Actualizar" class="btn btn-success">
                             </form>
-                        </div>                         
+                        </div>             
                     </div>
                 </div>
                <div>               
                 <div class="col-sm-8">
                     <div class="card">
                         <div class="card-body">
-                            <table class="table table-hover">
+                            <table id="datos" number-per-page="10" current-page="" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -67,8 +67,8 @@
                                     <c:forEach var="UT" items="${listar}">
                                             <tr>
                                             <td>${UT.getIdUnidadTransporte()}</td>
-                                            <td>${UT.getMarca()}</td>
                                             <td>${UT.getPlacas()}</td>
+                                            <td>${UT.getMarca()}</td>
                                             <td>${UT.getModelo()}</td>
                                             <td>${UT.getAnio()}</td>
                                             <td>${UT.getCapacidad()}</td>
@@ -85,7 +85,7 @@
                     </div>
                 </div>
             </div>
-                                
+           </div>                      
             </section
             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

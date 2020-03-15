@@ -102,6 +102,23 @@ public class Controlador extends HttpServlet {
             } catch (Exception e) {
             }
     }
+        if (menu.equals("clientes")) 
+        {
+            try {
+                switch (accion) {
+                    case "Listar":
+                        List lista = udao.listar();
+                        request.setAttribute("listar",lista);
+                        System.out.println(lista);
+                        break;
+                        default:
+                        throw new AssertionError();
+                   }
+                request.getRequestDispatcher("clientes.jsp").forward(request, response);
+            } catch (Exception e) {
+            }
+ 
+        }
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
