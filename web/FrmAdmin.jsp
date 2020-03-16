@@ -98,7 +98,7 @@
 						<ul class="full-width menu-principal sub-menu-options">
 						<li class="full-width divider-menu-h"></li>	
 							<li class="full-width">
-                                                            <a href="clientes.jsp" class="full-width">
+                                                            <a href="Controlador?menu=clientes&accion=Listar" class="full-width">
                                                                     <div class="navLateral-body-cl">
                                                                     <i class="zmdi zmdi-account "></i>
                                                                     </div>

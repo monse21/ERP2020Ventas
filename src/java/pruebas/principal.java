@@ -5,6 +5,7 @@
  */
 package pruebas;
 
+import Modelo.ClientesDAO;
 import Modelo.EmpleadoDAO;
 import config.Conexion;
 
@@ -23,5 +24,6 @@ public class principal {
         cn.consultar("select * from Empleado;");
         EmpleadoDAO edao= new EmpleadoDAO();
         edao.validar("jreyes@gmail.com", "123");
+        ClientesDAO c=new ClientesDAO();
     }
 }

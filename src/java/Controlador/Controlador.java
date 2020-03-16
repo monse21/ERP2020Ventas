@@ -5,6 +5,9 @@
  */
 package Controlador;
 
+import Modelo.Clientes;
+import Modelo.ClientesDAO;
+import Modelo.ClientesTienda;
 import Modelo.Empleado;
 import Modelo.EmpleadoDAO;
 import Modelo.UnidadeTransporte;
@@ -25,6 +28,9 @@ public class Controlador extends HttpServlet {
     EmpleadoDAO edao = new EmpleadoDAO();
     UnidadeTransporte UT = new UnidadeTransporte();
     UnidadeTransporteDAO udao= new UnidadeTransporteDAO();
+    Clientes cliente=new Clientes();
+    ClientesDAO cdao=new ClientesDAO();
+    ClientesTienda ct=new ClientesTienda();
     int ide;
     int idu;
     
@@ -88,7 +94,6 @@ public class Controlador extends HttpServlet {
                         UT.setModelo(request.getParameter("txtModelo"));
                         UT.setAnio(request.getParameter("txtAnio"));
                         UT.setCapacidad(request.getParameter("txtCapacidad"));
-                        
                         udao.Actualizar(UT);
                         request.getRequestDispatcher("Controlador?menu=UnidadeTransportecrud&accion=Listar").forward(request, response);
                     break;
@@ -107,12 +112,28 @@ public class Controlador extends HttpServlet {
             try {
                 switch (accion) {
                     case "Listar":
-                        List lista = udao.listar();
-                        request.setAttribute("listar",lista);
+                        List lista = cdao.listar();
+                        //ClientesTienda c =cdao.consultarDatosClienteTienda(cliente.getIdCliente());
+                        request.setAttribute("c", lista);
                         System.out.println(lista);
                         break;
                         default:
                         throw new AssertionError();
+                    case "Agregar":
+                        ct.setNombre(request.getParameter("nombre"));
+                        ct.setContacto(request.getParameter("contacto"));
+                        ct.setLimiteCredito(Float.parseFloat(request.getParameter("credito")));
+                        cliente.setIdCliente(Integer.parseInt(request.getParameter("id")));
+                        cliente.setDireccion(request.getParameter("direc"));
+                        cliente.setCodigoPostal(request.getParameter("codigo"));
+                        cliente.setRfc(request.getParameter("rfc"));
+                        cliente.setTelefono(request.getParameter("tel"));
+                        cliente.setEmail(request.getParameter("email"));
+                        cliente.setTipo(request.getParameter("tipo") );
+                        cliente.setIdCiudad(Integer.parseInt(request.getParameter("ciudad")));
+                        ct.setClientes(cliente);
+                        int msg=cdao.registrarClienteTienda(ct);
+                          break;    
                    }
                 request.getRequestDispatcher("clientes.jsp").forward(request, response);
             } catch (Exception e) {
