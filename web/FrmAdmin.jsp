@@ -103,7 +103,15 @@
                                                                     <i class="zmdi zmdi-account "></i>
                                                                     </div>
                                                                     <div class="navLateral-body-cr hide-on-tablet">
-                                                                            CLIENTES
+                                                                            CLIENTES TIENDA
+                                                                    </div>
+                                                            </a>
+                                                            <a href="Controlador?menu=clienteIndividual&accion=Listar" class="full-width">
+                                                                    <div class="navLateral-body-cl">
+                                                                    <i class="zmdi zmdi-account "></i>
+                                                                    </div>
+                                                                    <div class="navLateral-body-cr hide-on-tablet">
+                                                                            CLIENTES INDIDUAL
                                                                     </div>
                                                             </a>
 							</li>

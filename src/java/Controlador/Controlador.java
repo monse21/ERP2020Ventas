@@ -5,6 +5,8 @@
  */
 package Controlador;
 
+import Modelo.ClienteIndividual;
+import Modelo.ClienteIndividualDAO;
 import Modelo.Clientes;
 import Modelo.ClientesDAO;
 import Modelo.ClientesTienda;
@@ -30,9 +32,10 @@ public class Controlador extends HttpServlet {
     UnidadeTransporteDAO udao= new UnidadeTransporteDAO();
     Clientes cliente=new Clientes();
     ClientesDAO cdao=new ClientesDAO();
+    ClienteIndividual CI =new ClienteIndividual();
+    ClienteIndividualDAO cidao= new ClienteIndividualDAO();
     ClientesTienda ct=new ClientesTienda();
-    int ide;
-    int idu;
+    int ide,idu,idci;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -67,8 +70,7 @@ public class Controlador extends HttpServlet {
                         List lista = udao.listar();
                         request.setAttribute("listar",lista);
                         System.out.println(lista);
-                        break;
-                        
+                        break; 
                     case"Agregar":
                         UT.setIdUnidadTransporte(Integer.parseInt(request.getParameter("txtIdUnidadTransporte")));
                         UT.setMarca(request.getParameter("txtMarcas"));
@@ -140,44 +142,67 @@ public class Controlador extends HttpServlet {
             }
  
         }
+                if (menu.equals("clienteIndividual")) 
+        {
+            try {
+                switch (accion) {
+                    case "Listar":
+                        List lista = cidao.listar();
+                        request.setAttribute("listar", lista);
+                        System.out.println(lista);
+                        break;
+                        default:
+                        throw new AssertionError();
+                    case "Agregar":
+                        CI.setIdClienteI(Integer.parseInt(request.getParameter("txtidclientein")));
+                        CI.setNombre(request.getParameter("txtnombre"));
+                        CI.setApaterno(request.getParameter("txtapaterno"));
+                        CI.setAmaterno(request.getParameter("txtamaterno"));
+                        CI.setSexo(request.getParameter("txtsexo"));
+                        cidao.Agregar(CI);
+                        request.getRequestDispatcher("Controlador?menu=clienteIndividual&accion=Listar").forward(request, response);
+                          break;  
+                        
+                     case "Editar":
+                        idci=Integer.parseInt(request.getParameter("id"));
+                        CI = cidao.listarId(idci);
+                        System.out.println("id individual"+ idci);
+                        request.setAttribute("CI", CI);
+                     request.getRequestDispatcher("Controlador?menu=clienteIndividual&accion=Listar").forward(request, response);     
+                    break;
+                    
+                    case "Actualizar":
+                        CI.setIdClienteI(Integer.parseInt(request.getParameter("txtidclientein")));
+                        CI.setNombre(request.getParameter("txtnombre"));
+                        CI.setApaterno(request.getParameter("txtapaterno"));
+                        CI.setAmaterno(request.getParameter("txtamaterno"));
+                        CI.setSexo(request.getParameter("txtsexo"));
+                        cidao.Actualizar(CI);
+                        request.getRequestDispatcher("Controlador?menu=clienteIndividual&accion=Listar").forward(request, response);
+                    break;
+                   }
+                request.getRequestDispatcher("ClienteIndividual.jsp").forward(request, response);
+            } catch (Exception e) {
+            }
+ 
+        }
+        
+        
+        
     }
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
-
+    }
 }

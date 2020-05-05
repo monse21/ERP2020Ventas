@@ -9,12 +9,8 @@ import config.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
  * @author DELL
@@ -71,13 +67,12 @@ public class UnidadeTransporteDAO {
         try {
             con = Conexion.conectar();
             ps = con.prepareStatement(sql);
-            ps.setInt(6, UT.getIdUnidadTransporte());
-            ps.setString(1, UT.getMarca() );
-            ps.setString(2, UT.getPlacas() );
-            ps.setString(3, UT.getModelo() );
+            ps.setString(1, UT.getPlacas());
+            ps.setString(2, UT.getMarca());
+            ps.setString(3, UT.getModelo());
             ps.setString(4, UT.getAnio() );
-            ps.setString(5, UT.getCapacidad() ); 
-            System.out.println("Estoy Actualizando" );
+            ps.setString(5, UT.getCapacidad());
+            ps.setInt(6, UT.getIdUnidadTransporte());
             ps.executeUpdate();
             
         } catch (Exception e) {
