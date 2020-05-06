@@ -116,7 +116,7 @@ public class Controlador extends HttpServlet {
                     case "Listar":
                         List lista = cdao.listar();
                         //ClientesTienda c =cdao.consultarDatosClienteTienda(cliente.getIdCliente());
-                        request.setAttribute("c", lista);
+                        request.setAttribute("listar", lista);
                         System.out.println(lista);
                         break;
                         default:
