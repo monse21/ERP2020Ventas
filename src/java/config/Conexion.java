@@ -14,7 +14,7 @@ import java.sql.Statement;
 
 public class Conexion {
 private static Connection connection;
-private static String url="jdbc:sqlserver://DESKTOP-VOTPHLB\\SQLEXPRESS:1433;databaseName=ERP2020";
+private static String url="jdbc:sqlserver://DESKTOP-F9UQSAA\\SQLEXPRESS:1433;databaseName=ERP2020";
 private static String userName="sa";
 private static String password="sa";
     public static Connection conectar() throws ClassNotFoundException{

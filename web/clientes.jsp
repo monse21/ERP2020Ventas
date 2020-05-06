@@ -84,7 +84,7 @@
                                     </tr>
                                 </thead>
                                 <tbody> 
-                                    <c:forEach var="UT" items="${listar}">
+                                    <c:forEach var="UT" items="${}">
                                             <tr>
                                             <td>${UT.getIdCliente()}</td>
                                             <td>${UT.getNombre()}</td>

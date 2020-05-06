@@ -154,15 +154,6 @@
 								TRIPULACION
 							</div>
 						    </a>
-                                                            <li class="full-width">
-                                                            <a href="Controlador?menu=EnviosVentascrud&accion=Listar" class="full-width">
-                                                                    <div class="navLateral-body-cl">
-                                                                    <i class="zmdi zmdi-account "></i>
-                                                                    </div>
-                                                                    <div class="navLateral-body-cr hide-on-tablet">
-                                                                     ENVIOS VENTAS                 
-                                                                    </div>
-                                                            </a>
 							</li>
 						
 						</ul>

@@ -54,8 +54,8 @@ public class UnidadeTransporteDAO {
             con = Conexion.conectar();
             ps = con.prepareStatement(sql);
             ps.setInt(1, UT.getIdUnidadTransporte());
-            ps.setString(2, UT.getPlacas() );
             ps.setString(3, UT.getMarca() );
+            ps.setString(2, UT.getPlacas() );
             ps.setString(4, UT.getModelo() );
             ps.setString(5, UT.getAnio() );
             ps.setString(6, UT.getCapacidad() ); 
@@ -71,12 +71,12 @@ public class UnidadeTransporteDAO {
         try {
             con = Conexion.conectar();
             ps = con.prepareStatement(sql);
+            ps.setInt(6, UT.getIdUnidadTransporte());
             ps.setString(1, UT.getMarca() );
             ps.setString(2, UT.getPlacas() );
             ps.setString(3, UT.getModelo() );
             ps.setString(4, UT.getAnio() );
-            ps.setString(5, UT.getCapacidad() );
-            ps.setInt(6, UT.getIdUnidadTransporte());
+            ps.setString(5, UT.getCapacidad() ); 
             System.out.println("Estoy Actualizando" );
             ps.executeUpdate();
             
