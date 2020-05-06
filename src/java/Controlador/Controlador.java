@@ -12,6 +12,8 @@ import Modelo.Empleado;
 import Modelo.EmpleadoDAO;
 import Modelo.UnidadeTransporte;
 import Modelo.UnidadeTransporteDAO;
+import Modelo.EnvioVentas;
+import Modelo.EnvioVentasDAO;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -31,8 +33,11 @@ public class Controlador extends HttpServlet {
     Clientes cliente=new Clientes();
     ClientesDAO cdao=new ClientesDAO();
     ClientesTienda ct=new ClientesTienda();
+    EnvioVentas ev = new EnvioVentas();
+    EnvioVentasDAO evdao = new EnvioVentasDAO();
     int ide;
     int idu;
+    int iden;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -140,6 +145,49 @@ public class Controlador extends HttpServlet {
             }
  
         }
+             if (menu.equals("EnviosVentascrud")) {
+            try {
+                switch (accion) {
+                    case "Listar":
+                        List lista = evdao.listar();
+                        request.setAttribute("listar",lista);
+                        System.out.println(lista);
+                        break;
+                        
+                    case"Agregar":
+                        ev.setId(Integer.parseInt(request.getParameter("txtIdEnvio")));
+                        ev.setIdVenta(Integer.parseInt(request.getParameter("txtIdVenta")));
+                        ev.setFechaEntregaPlaneada(request.getParameter("txtFechaEntregaPlaneada"));
+                        ev.setFechaEntregaReal(request.getParameter("txtFechaEntregaReal"));
+                        evdao.Agregar(ev);
+                        request.getRequestDispatcher("Controlador?menu=EnviosVentascrud&accion=Listar").forward(request, response);
+                    break;
+                        
+                    case "Editar":
+                        iden=Integer.parseInt(request.getParameter("id"));
+                        ev = evdao.listarId(iden);
+                        request.setAttribute("ev", ev);
+                     request.getRequestDispatcher("Controlador?menu=EnviosVentascrud&accion=Listar").forward(request, response);     
+                    break;
+                    
+                    case "Actualizar":
+                        ev.setId(Integer.parseInt(request.getParameter("txtIdEnvio")));
+                        ev.setIdVenta(Integer.parseInt(request.getParameter("txtIdVenta")));
+                        ev.setFechaEntregaPlaneada(request.getParameter("txtFechaEntregaPlaneada"));
+                        ev.setFechaEntregaReal(request.getParameter("txrFechaEntregaReal"));
+                        evdao.Actualizar(ev);
+                        request.getRequestDispatcher("Controlador?menu=EnviosVentascrud&accion=Listar").forward(request, response);
+                    break;
+                    
+                    case "eliminar":
+                    break;
+                    default:
+                        throw new AssertionError();
+                   }
+                request.getRequestDispatcher("EnviosVentascrud.jsp").forward(request, response);
+            } catch (Exception e) {
+            }
+    }
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
