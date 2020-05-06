@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package Controlador;
-
 import Modelo.ClienteIndividual;
 import Modelo.ClienteIndividualDAO;
 import Modelo.Clientes;
@@ -72,6 +71,7 @@ public class Controlador extends HttpServlet {
                         System.out.println(lista);
                         break; 
                     case"Agregar":
+                        
                         UT.setIdUnidadTransporte(Integer.parseInt(request.getParameter("txtIdUnidadTransporte")));
                         UT.setMarca(request.getParameter("txtMarcas"));
                         UT.setPlacas(request.getParameter("txtPlacas"));
@@ -149,16 +149,21 @@ public class Controlador extends HttpServlet {
                     case "Listar":
                         List lista = cidao.listar();
                         request.setAttribute("listar", lista);
-                        System.out.println(lista);
                         break;
-                        default:
-                        throw new AssertionError();
                     case "Agregar":
-                        CI.setIdClienteI(Integer.parseInt(request.getParameter("txtidclientein")));
+                        CI.getCliente().setIdCliente(Integer.parseInt(request.getParameter("txtidclientein")));
                         CI.setNombre(request.getParameter("txtnombre"));
                         CI.setApaterno(request.getParameter("txtapaterno"));
                         CI.setAmaterno(request.getParameter("txtamaterno"));
                         CI.setSexo(request.getParameter("txtsexo"));
+                        CI.getCliente().setDireccion(request.getParameter("txtdir"));
+                        CI.getCliente().setCodigoPostal(request.getParameter("txtcp"));
+                        CI.getCliente().setIdCiudad(Integer.parseInt(request.getParameter("txtciudad")));
+                        CI.getCliente().setRfc(request.getParameter("txtrfc")); 
+                        CI.getCliente().setTelefono(request.getParameter("txttel"));
+                        CI.getCliente().setEmail(request.getParameter("txtemail"));
+                        CI.getCliente().setTipo(request.getParameter("TI"));
+                        CI.getCliente().setEstatus(request.getParameter("A"));
                         cidao.Agregar(CI);
                         request.getRequestDispatcher("Controlador?menu=clienteIndividual&accion=Listar").forward(request, response);
                           break;  
@@ -168,11 +173,13 @@ public class Controlador extends HttpServlet {
                         CI = cidao.listarId(idci);
                         System.out.println("id individual"+ idci);
                         request.setAttribute("CI", CI);
-                     request.getRequestDispatcher("Controlador?menu=clienteIndividual&accion=Listar").forward(request, response);     
+                       int ultimo=cidao.ultimoID();
+                        System.out.println(ultimo);
+                        request.getRequestDispatcher("Controlador?menu=clienteIndividual&accion=Listar").forward(request, response);     
                     break;
                     
                     case "Actualizar":
-                        CI.setIdClienteI(Integer.parseInt(request.getParameter("txtidclientein")));
+                   //     CI.setIdClienteI(Integer.parseInt(request.getParameter("txtidclientein")));
                         CI.setNombre(request.getParameter("txtnombre"));
                         CI.setApaterno(request.getParameter("txtapaterno"));
                         CI.setAmaterno(request.getParameter("txtamaterno"));
