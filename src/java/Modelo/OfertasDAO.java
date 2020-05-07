@@ -7,10 +7,12 @@ package Modelo;
 
 import config.Conexion;
 import java.sql.Connection;
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import javax.sql.DataSource;
 
 /**
  *
@@ -49,4 +51,24 @@ public class OfertasDAO {
         }
         return lista;
 }
+ public int agregar(Ofertas o){
+        String sql ="insert into Ofertas(nombres,despricion,porDescuento,fechaInicio,fechafin,canMinProducto,estatus)values(?,?,?,?,?,?,?)";
+        try {
+            con = Conexion.conectar();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, o.getNombre());
+            ps.setString(2, o.getDescripcion());
+            ps.setFloat(3, o.getDescuento());
+            ps.setDate(4, (java.sql.Date)o.getFechainicio());
+            ps.setDate(5, (java.sql.Date) o.getFechafin());
+            System.out.println("paso la ultima fecha");
+            ps.setInt(6, o.getCantMini());
+            ps.setString(7, o.getEstatus());
+            ps.executeUpdate();
+     } catch (Exception e) {
+     }
+     
+     return r;
+     
+ }  
 }

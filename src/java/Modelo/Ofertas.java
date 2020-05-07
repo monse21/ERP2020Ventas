@@ -35,6 +35,17 @@ String estatus;
         this.estatus = estatus;
     }
 
+    public Ofertas(String nombre, String descripcion, float descuento, Date fechainicio, Date fechafin, int cantMini, String estatus) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.descuento = descuento;
+        this.fechainicio = fechainicio;
+        this.fechafin = fechafin;
+        this.cantMini = cantMini;
+        this.estatus = estatus;
+    }
+
+    
     public int getIdOferta() {
         return idOferta;
     }

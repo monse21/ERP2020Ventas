@@ -25,12 +25,16 @@
                                     <input type="text" id=""  value="" name="txtdescripcion" class="form-control" >
                                 </div>
                                 <div class="form-group">
+                                    <label>Descuento</label>
+                                    <input type="number" id=""  value="" name="txtdescuento" class="form-control" >
+                                </div>
+                                <div class="form-group">
                                     <label>Fecha inicio</label>
-                                    <input type="date" value="" name="fechaini" class="form-control" >
+                                    <input type="text" value="" name="fechaini" class="form-control" >
                                 </div>
                                 <div class="form-group">
                                     <label>Fecha fin</label>
-                                    <input type="date" value="" name="fechafi" class="form-control" >
+                                    <input type="text" value="" name="fechafi" class="form-control" >
                                 </div>
                                 <div class="form-group">
                                     <label>Cantidad Minima</label>
