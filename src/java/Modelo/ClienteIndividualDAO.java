@@ -23,14 +23,13 @@ public class ClienteIndividualDAO {
 
     public List listar() {
         String sql = "select c.idCliente,cl.nombre,cl.apaterno,cl.amaterno,cl.sexo,c.dirección,c.codigoPostal,c.idCiudad,c.rfc,c.telefono,"
-                       + "c.email,c.tipo,c.estatus from ClienteIndividual cl join Clientes c on cl.idCliente=c.idCliente where estatus= 'A'";
+                       + "c.email,c.tipo,c.estatus from ClienteIndividual cl join Clientes c on cl.idCliente=c.idCliente where estatus='A'";
         List<ClienteIndividual> lista = new ArrayList<>();
         try {
             con = Conexion.conectar();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                ClienteIndividual CI = new ClienteIndividual();
                 cliente.setIdCliente(rs.getInt(1));
                 CI.setNombre(rs.getString(2));
                 CI.setApaterno(rs.getString(3));
@@ -77,7 +76,7 @@ public class ClienteIndividualDAO {
     }
 
     public int Actualizar(ClienteIndividual CI) {
-        String sql ="execute Actualizar_CT ?,?,?,?,?,?,?,?,?,?,?,?,?";
+        String sql ="execute Actualizar_CI ?,?,?,?,?,?,?,?,?,?,?,?,?";
         try {
             con = Conexion.conectar();
             ps = con.prepareStatement(sql);
@@ -101,7 +100,7 @@ public class ClienteIndividualDAO {
     }
 
        public int Eliminar (int id) {
-        String sql ="Update Clientes set estatus='I' where idCliente"+id;
+        String sql ="Update Clientes set estatus='I' where idCliente="+id;
         try {
             con = Conexion.conectar();
             ps = con.prepareStatement(sql);
