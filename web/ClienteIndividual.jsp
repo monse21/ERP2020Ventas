@@ -85,15 +85,15 @@
                                                 <th>APELLIDO PATERNO</th>
                                                 <th>APELLIDO MATERNO</th>
                                                 <th>SEXO</th>
-                                                <th>CONTACTO</th>
-                                                <th>CREDITO</th>
                                                 <th>DIRECCION</th>
                                                 <th>CP</th>
+                                                <th>CIUDAD</th>
                                                 <th>RFC</th>
                                                 <th>TEL</th>
                                                 <th>EMAIL</th>
                                                 <th>TIPO</th>
-                                                <th>CIUDAD</th>
+                                                <th>ESTATUS</th>
+                                               
                                             </tr>
                                         </thead>
                                         <tbody> 
@@ -113,7 +113,7 @@
                                                     <td>${CI.getCliente().getEstatus()}</td>
                                                     <td>
                                                         <a class="btn btn-warning" href="Controlador?menu=clienteIndividual&accion=Editar&id=${CI.getCliente().getIdCliente()}">Editar</a>
-                                                        <a class="btn btn-danger" href="Controlador?menu=clienteIndividual&accion=Delete&id=">Delete</a>
+                                                        <a class="btn btn-danger" href="Controlador?menu=clienteIndividual&accion=Delete&id=${CI.getCliente().getIdCliente()}">Delete</a>
                                                     </td>
                                                 </tr>
                                             </c:forEach>

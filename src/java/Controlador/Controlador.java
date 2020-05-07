@@ -167,10 +167,7 @@ public class Controlador extends HttpServlet {
                      case "Editar":
                         idci=Integer.parseInt(request.getParameter("id"));
                         CI = cidao.listarId(idci);
-                        System.out.println("id individual"+ idci);
                         request.setAttribute("CI", CI);
-                       int ultimo=cidao.ultimoID();
-                        System.out.println(ultimo);
                         request.getRequestDispatcher("Controlador?menu=clienteIndividual&accion=Listar").forward(request, response);     
                     break;
                     

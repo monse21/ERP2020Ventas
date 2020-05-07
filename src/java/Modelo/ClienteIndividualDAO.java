@@ -23,7 +23,7 @@ public class ClienteIndividualDAO {
 
     public List listar() {
         String sql = "select c.idCliente,cl.nombre,cl.apaterno,cl.amaterno,cl.sexo,c.dirección,c.codigoPostal,c.idCiudad,c.rfc,c.telefono,"
-                       + "c.email,c.tipo,c.estatus from ClienteIndividual cl join Clientes c on cl.idCliente=c.idCliente";
+                       + "c.email,c.tipo,c.estatus from ClienteIndividual cl join Clientes c on cl.idCliente=c.idCliente where estatus= 'A'";
         List<ClienteIndividual> lista = new ArrayList<>();
         try {
             con = Conexion.conectar();
@@ -77,21 +77,40 @@ public class ClienteIndividualDAO {
     }
 
     public int Actualizar(ClienteIndividual CI) {
-        String sql = "Update ClienteIndividual set idCliente=?,nombre=?,apaterno=?,amaterno=?,sexo=? where idCliente=?";
+        String sql ="execute Actualizar_CT ?,?,?,?,?,?,?,?,?,?,?,?,?";
         try {
             con = Conexion.conectar();
             ps = con.prepareStatement(sql);
-//            ps.setInt(1, CI.getIdClienteI());
+            ps.setInt(1, CI.getCliente().getIdCliente());
             ps.setString(2, CI.getNombre());
             ps.setString(3, CI.getApaterno());
             ps.setString(4, CI.getAmaterno());
             ps.setString(5, CI.getSexo());
+            ps.setString(6, CI.getCliente().getDireccion());
+            ps.setString(7, CI.getCliente().getCodigoPostal());
+            ps.setInt(8, CI.getCliente().getIdCiudad());
+            ps.setString(9, CI.getCliente().getRfc());
+            ps.setString(10, CI.getCliente().getTelefono());
+            ps.setString(11, CI.getCliente().getEmail());
+            ps.setString(12, CI.getCliente().getTipo());
+            ps.setString(13, CI.getCliente().getEstatus());         
             ps.executeUpdate();
         } catch (Exception e) {
         }
         return r;
     }
 
+       public int Eliminar (int id) {
+        String sql ="Update Clientes set estatus='I' where idCliente"+id;
+        try {
+            con = Conexion.conectar();
+            ps = con.prepareStatement(sql);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+        return r;
+    }
+    
     public ClienteIndividual listarId(int id) {
         String sql = "select c.idCliente,cl.nombre,cl.apaterno,cl.amaterno,cl.sexo,c.dirección,c.codigoPostal,c.idCiudad,c.rfc,\n" +
 "c.telefono,c.email,c.tipo,c.estatus from ClienteIndividual cl join Clientes c on cl.idCliente=c.idCliente where c.idCliente=" + id;
