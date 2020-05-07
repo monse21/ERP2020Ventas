@@ -6,6 +6,8 @@ import Modelo.ClientesDAO;
 import Modelo.ClientesTienda;
 import Modelo.Empleado;
 import Modelo.EmpleadoDAO;
+import Modelo.Ofertas;
+import Modelo.OfertasDAO;
 import Modelo.UnidadeTransporte;
 import Modelo.UnidadeTransporteDAO;
 import java.io.IOException;
@@ -29,6 +31,8 @@ public class Controlador extends HttpServlet {
     ClienteIndividual CI =new ClienteIndividual();
     ClienteIndividualDAO cidao= new ClienteIndividualDAO();
     ClientesTienda ct=new ClientesTienda();
+    Ofertas o =new Ofertas();
+    OfertasDAO of=new OfertasDAO();
     int ide,idu,idci;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -188,6 +192,21 @@ public class Controlador extends HttpServlet {
             } catch (Exception e) {
             }
  
+        }
+                if (menu.equals("Ofertas")) {
+                    try {
+                        switch (accion) {
+                            case "Listar":
+                        List lista = of.listar();
+                        request.setAttribute("listar", lista);
+                                System.out.println(lista);
+                                break;
+                            default:
+                                throw new AssertionError();
+                        }
+                      request.getRequestDispatcher("Ofertas.jsp").forward(request, response);  
+                    } catch (Exception e) {
+                    }
         }
         
         

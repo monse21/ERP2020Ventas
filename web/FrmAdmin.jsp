@@ -130,7 +130,7 @@
                                                                     <i class="zmdi zmdi-account "></i>
                                                                     </div>
                                                                     <div class="navLateral-body-cr hide-on-tablet">
-                                                                            CLIENTES INDIDUAL
+                                                                            CLIENTES INDIVIDUAL
                                                                     </div>
                                                             </a>
 							</li>
@@ -141,6 +141,17 @@
 							</div>
 							<div  class="navLateral-body-cr hide-on-tablet">
 								VENTAS
+							</div>
+						    </a>
+							</li>
+                                                       
+                                                        <li class="full-width">
+							<a href="Controlador?menu=Ofertas&accion=Listar" class="full-width">
+							<div class="navLateral-body-cl">
+							<i class="zmdi zmdi-shopping-cart"></i>							
+							</div>
+							<div  class="navLateral-body-cr hide-on-tablet">
+								OFERTAS
 							</div>
 						    </a>
 							</li>
