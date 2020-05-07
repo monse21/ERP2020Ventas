@@ -53,7 +53,7 @@ public class ClienteIndividualDAO {
     }
 
     public int Agregar(ClienteIndividual CI) {
-        String sql = "call Agregar_CI";
+        String sql = "execute Agregar_CI ?,?,?,?,?,?,?,?,?,?,?,?,?";
         try {
             con = Conexion.conectar();
             ps = con.prepareStatement(sql);
@@ -93,17 +93,27 @@ public class ClienteIndividualDAO {
     }
 
     public ClienteIndividual listarId(int id) {
-        String sql = "select * from ClienteIndividual where IdCliente=" + id;
+        String sql = "select c.idCliente,cl.nombre,cl.apaterno,cl.amaterno,cl.sexo,c.dirección,c.codigoPostal,c.idCiudad,c.rfc,\n" +
+"c.telefono,c.email,c.tipo,c.estatus from ClienteIndividual cl join Clientes c on cl.idCliente=c.idCliente where c.idCliente=" + id;
         try {
             con = Conexion.conectar();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-//                CI.setIdClienteI(rs.getInt(1));
+                cliente.setIdCliente(rs.getInt(1));
                 CI.setNombre(rs.getString(2));
                 CI.setApaterno(rs.getString(3));
                 CI.setAmaterno(rs.getString(4));
                 CI.setSexo(rs.getString(5));
+                cliente.setDireccion(rs.getString(6));
+                cliente.setCodigoPostal(rs.getString(7));
+                cliente.setIdCiudad(rs.getInt(8));
+                cliente.setRfc(rs.getString(9));
+                cliente.setTelefono(rs.getString(10));
+                cliente.setEmail(rs.getString(11));
+                cliente.setTipo(rs.getString(12));
+                cliente.setEstatus(rs.getString(12));
+                CI.setCliente(cliente);                
             }
         } catch (Exception e) {
         }

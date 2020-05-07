@@ -18,27 +18,23 @@
                         <div class="card-body">
                             <form action="Controlador?menu=clienteIndividual" method="POST">
                                 <div class="form-group">
-                                    <label>Id</label>
-                                    <input type="text" id="clienteIndividual"  value="" name="txtidclientein" class="form-control" >
-                                </div>
-                                <div class="form-group">
                                     <label>Nombre</label>
-                                    <input type="text" id="nombre"  value="" name="txtnombre" class="form-control" >
+                                    <input type="text" id="nombre"  value="${CI.getNombre()}" name="txtnombre" class="form-control" >
                                 </div>
 
                                 <div class="form-group">
                                     <label>Apellido Paterno</label>
-                                    <input type="text" id="apaterno"  value="" name="txtapaterno" class="form-control" >
+                                    <input type="text" id="apaterno"  value="${CI.getApaterno()}" name="txtapaterno" class="form-control" >
                                 </div>
 
                                 <div class="form-group">
                                     <label>Apellido materno</label>
-                                    <input type="text" id="amaterno"  value="" name="txtamaterno" class="form-control" >
+                                    <input type="text" id="amaterno"  value="${CI.getAmaterno()}" name="txtamaterno" class="form-control" >
                                 </div>
 
                                 <div class="form-group">
                                     <label>Sexo
-                                        <select placeholder = "Sexo" name="txtsexo" required >
+                                        <select value="${CI.getSexo()}" name="txtsexo" required >
                                             <option value="H">Hombre</option>
                                             <option value="M">Mujer</option>
 
@@ -48,27 +44,27 @@
                                 <div class="form-group">
                                     <div class="form-group">
                                         <label>Direccion</label>
-                                        <input type="text" value="" name="txtdir" class="form-control" >
+                                        <input type="text" value="${CI.getCliente().getDireccion()}" name="txtdir" class="form-control" >
                                     </div>
                                     <div class="form-group">
                                         <label>Codigo Postal</label>
-                                        <input type="number" value="" name="txtcp" class="form-control" >
+                                        <input type="number" value="${CI.getCliente().getCodigoPostal()}" name="txtcp" class="form-control" >
                                     </div>
                                     <div class="form-group">
                                         <label>RFC</label>
-                                        <input type="text" value="" name="txtrfc" class="form-control" >
+                                        <input type="text" value="${CI.getCliente().getRfc()}" name="txtrfc" class="form-control" >
                                     </div>
                                     <div class="form-group">
                                         <label>Telefono</label>
-                                        <input type="text" value="" name="txttel" class="form-control" >
+                                        <input type="text" value="${CI.getCliente().getTelefono()}" name="txttel" class="form-control" >
                                     </div>
                                     <div class="form-group">
                                         <label>Email</label>
-                                        <input type="text" value="" name="txtemail" class="form-control" >
+                                        <input type="text" value="${CI.getCliente().getEmail()}" name="txtemail" class="form-control" >
                                     </div>
                                     <div class="form-group">
                                         <label>Ciudad</label>
-                                        <input type="text" value="" name="txtciudad" class="form-control" >
+                                        <input type="text" value="${CI.getCliente().getIdCiudad()}" name="txtciudad" class="form-control" >
                                     </div>
 
                                     <input type="submit" name="accion" value="Agregar" class="btn btn-info">
@@ -85,7 +81,6 @@
                                     <table id="datos" number-per-page="10" current-page="" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
                                         <thead>
                                             <tr>
-                                                <th>ID</th>
                                                 <th>NOMBRE</th>
                                                 <th>APELLIDO PATERNO</th>
                                                 <th>APELLIDO MATERNO</th>
@@ -104,7 +99,6 @@
                                         <tbody> 
                                             <c:forEach var="CI" items="${listar}">
                                                 <tr>
-                                                    <td>${CI.getCliente().getIdCliente()}</td>
                                                     <td>${CI.getNombre()}</td>
                                                     <td>${CI.getApaterno()}</td>
                                                     <td>${CI.getAmaterno()}</td>
@@ -118,7 +112,7 @@
                                                     <td>${CI.getCliente().getTipo()}</td>
                                                     <td>${CI.getCliente().getEstatus()}</td>
                                                     <td>
-                                                        <a class="btn btn-warning" href="Controlador?menu=clienteIndividual&accion=Editar&id=">Editar</a>
+                                                        <a class="btn btn-warning" href="Controlador?menu=clienteIndividual&accion=Editar&id=${CI.getCliente().getIdCliente()}">Editar</a>
                                                         <a class="btn btn-danger" href="Controlador?menu=clienteIndividual&accion=Delete&id=">Delete</a>
                                                     </td>
                                                 </tr>

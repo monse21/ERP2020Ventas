@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controlador;
 import Modelo.ClienteIndividual;
 import Modelo.ClienteIndividualDAO;
@@ -151,19 +146,20 @@ public class Controlador extends HttpServlet {
                         request.setAttribute("listar", lista);
                         break;
                     case "Agregar":
-                        CI.getCliente().setIdCliente(Integer.parseInt(request.getParameter("txtidclientein")));
-                        CI.setNombre(request.getParameter("txtnombre"));
+                        cliente.setIdCliente(cidao.ultimoID());
+                            CI.setNombre(request.getParameter("txtnombre"));
                         CI.setApaterno(request.getParameter("txtapaterno"));
                         CI.setAmaterno(request.getParameter("txtamaterno"));
                         CI.setSexo(request.getParameter("txtsexo"));
-                        CI.getCliente().setDireccion(request.getParameter("txtdir"));
-                        CI.getCliente().setCodigoPostal(request.getParameter("txtcp"));
-                        CI.getCliente().setIdCiudad(Integer.parseInt(request.getParameter("txtciudad")));
-                        CI.getCliente().setRfc(request.getParameter("txtrfc")); 
-                        CI.getCliente().setTelefono(request.getParameter("txttel"));
-                        CI.getCliente().setEmail(request.getParameter("txtemail"));
-                        CI.getCliente().setTipo(request.getParameter("TI"));
-                        CI.getCliente().setEstatus(request.getParameter("A"));
+                        cliente.setDireccion(request.getParameter("txtdir"));
+                        cliente.setCodigoPostal(request.getParameter("txtcp"));
+                        cliente.setIdCiudad(Integer.parseInt(request.getParameter("txtciudad")));
+                        cliente.setRfc(request.getParameter("txtrfc")); 
+                        cliente.setTelefono(request.getParameter("txttel"));
+                        cliente.setEmail(request.getParameter("txtemail"));
+                        cliente.setTipo(request.getParameter("TI"));
+                        cliente.setEstatus(request.getParameter("A"));
+                        CI.setCliente(cliente); 
                         cidao.Agregar(CI);
                         request.getRequestDispatcher("Controlador?menu=clienteIndividual&accion=Listar").forward(request, response);
                           break;  
