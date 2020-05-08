@@ -12,6 +12,7 @@ import Modelo.OfertasDAO;
 import Modelo.UnidadeTransporte;
 import Modelo.UnidadeTransporteDAO;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -277,6 +278,25 @@ public class Controlador extends HttpServlet {
                 request.getRequestDispatcher("Ofertas.jsp").forward(request, response);
             } catch (Exception e) {
             }
+        }
+        if (menu.equals("Envios")) {
+            try {
+                switch (accion) {
+                    case "Listar":
+                    ArrayList<UnidadeTransporte> lista=udao.consultaGeneral();
+                    request.setAttribute("carreras", lista);
+                        udao= new UnidadeTransporteDAO();
+                        lista=udao.consultaGeneral();
+                        break;        
+                    default:
+                        throw new AssertionError();
+                    case "Agregar":
+                      break;      
+                }
+                request.getRequestDispatcher("Envios.jsp").forward(request, response);
+            } catch (Exception e) {   
+            }
+ 
         }
 
     }

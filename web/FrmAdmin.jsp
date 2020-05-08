@@ -193,7 +193,18 @@
 							</div>
 						    </a>
 							</li>
-						
+                                                        
+                                                      							<li class="full-width">
+                                                            <a href="Controlador?menu=Envios&accion=Listar" class="full-width">
+                                                                    <div class="navLateral-body-cl">
+                                                                    <i class="zmdi zmdi-account "></i>
+                                                                    </div>
+                                                                    <div class="navLateral-body-cr hide-on-tablet">
+                                                                     REALIZAR ENVIO
+                                                                    </div>
+                                                            </a>
+							</li>
+                                                        
 						</ul>
 					</li>
                                         <!--fin Envio-->

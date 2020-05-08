@@ -9,8 +9,11 @@ import config.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author DELL
@@ -98,4 +101,33 @@ public class UnidadeTransporteDAO {
         }
     return U;
     }
+    public ArrayList<UnidadeTransporte> consultaGeneral(){
+		ArrayList<UnidadeTransporte> lista=new ArrayList<UnidadeTransporte>();
+		String sql="select idUnidadTransporte, modelo from UnidadesTransporte";
+		try{
+			
+            con=Conexion.conectar();
+                    System.out.println("paso el conectar");
+            ps=con.prepareStatement(sql);
+            rs=ps.executeQuery();
+			while(rs.next()){
+				UnidadeTransporte c=new UnidadeTransporte();
+				c.setIdUnidadTransporte(rs.getInt(1));
+                                //c.setPlacas(rs.getString(2));
+                                //System.out.println("este es el error 3");
+                                //c.setMarca(rs.getString(3));
+                                c.setModelo(rs.getString(2));
+                                //c.setAnio(rs.getString(5));
+                                //c.setCapacidad(rs.getString(6));
+				lista.add(c);
+			}
+			rs.close();
+		}
+		catch(SQLException e){
+			System.out.println("Error:"+e.getMessage());
+		} catch (ClassNotFoundException ex) {
+            Logger.getLogger(UnidadeTransporteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+		return lista;
+	}
 }

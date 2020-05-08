@@ -57,6 +57,7 @@ public class OfertasDAO {
             ps.setString(8, o.getEstatus());
             ps.executeUpdate();
      } catch (Exception e) {
+            System.out.println(e);
      }
      return r;
  }  
