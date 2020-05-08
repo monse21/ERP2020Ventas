@@ -7,8 +7,11 @@ import Modelo.ClientesDAO;
 import Modelo.ClientesTienda;
 import Modelo.Empleado;
 import Modelo.EmpleadoDAO;
+import Modelo.Envios;
+import Modelo.EnviosDAO;
 import Modelo.Ofertas;
 import Modelo.OfertasDAO;
+import Modelo.Tripulacion;
 import Modelo.UnidadeTransporte;
 import Modelo.UnidadeTransporteDAO;
 import java.io.IOException;
@@ -36,6 +39,10 @@ public class Controlador extends HttpServlet {
     ClientesTienda CT = new ClientesTienda();
     Ofertas of = new Ofertas();
     OfertasDAO ofdao = new OfertasDAO();
+    Envios env=new Envios();
+    EnviosDAO envdao= new EnviosDAO();
+    Tripulacion t =new Tripulacion();
+    
     int ide, idu, idci;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -171,7 +178,7 @@ public class Controlador extends HttpServlet {
         if (menu.equals("clienteIndividual")) {
             try {
                 switch (accion) {
-                    case "Listar":
+                        case "Listar":
                         List lista = cidao.listar();
                         request.setAttribute("listar", lista);
                         break;
@@ -287,10 +294,12 @@ public class Controlador extends HttpServlet {
                     request.setAttribute("carreras", lista);
                         udao= new UnidadeTransporteDAO();
                         lista=udao.consultaGeneral();
+                    List listado = envdao.listar();
+                    request.setAttribute("t", listado);    
+                        System.out.println(listado);
                         break;        
-                    default:
-                        throw new AssertionError();
                     case "Agregar":
+                        
                       break;      
                 }
                 request.getRequestDispatcher("Envios.jsp").forward(request, response);

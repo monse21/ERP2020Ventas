@@ -27,49 +27,33 @@
                             <div class="form-group">
                                 <label>Tripulacion</label>
                             </div>
-                            <div class="form-group d-flex">
-                                <div class="col-sm-6 d-flex">
-                                    <input type="text" name="codigotripu" value="${c.getIdEmpleado()}" class="form-control" placeholder="Codigo">
-                                    <button  type="submit" name="accion" value="BuscarTripulacion" class="btn btn-outline-info">Buscar</button>
-                                            
-                                </div>
-                                <div class="col-sm-6">
-                                    <input type="text" name="nomproducto" value="${c.getRol()}" placeholder="Datos Producto" class="form-control">
-                                </div>      
-                            </div>
-                                <div class="form-group">
-                                   <!--!--> 
-                                <label>Ventas</label>
-                            </div>
-                            <div class="form-group d-flex">
-                                <div class="col-sm-6 d-flex">
-                                    <input type="text" name="codigoVenta" value="${m.getIdVenta()}" class="form-control" placeholder="Codigo">
-                                    <button  type="submit" name="accion" value="BuscarVenta" class="btn btn-outline-info">Buscar</button>
-                                            
-                                </div>
-                                <div class="col-sm-6">
-                                    <input type="text" name="nomproducto" value="${m.getEstatus()}" placeholder="Datos Producto" class="form-control">
-                                </div>      
-                            </div>
-                            <div class="form-group d-flex">
-                                <div class="col-sm-6 d-flex">
-                                    <input type="text" name="precio" value="${m.getCantPagada()}" class="form-control" placeholder="S/.0.00">                                
-                                </div>                             
-                            </div>
+                            <div class="form-group">
+                                    <label>Fecha Salida</label>
+                                    <input type="date" value="${of.getFechafin()}" name="txtfechafi" class="form-control" >
+                           </div>
                             <div class="form-group d-flex">    
                             <select name="carrera" id="carrera" class="form-control">
-                                <option value="0" class="col-sm-6">--Elige una carrera--</option>
+                                <option value="0" class="col-sm-6">--Elige un transporte--</option>
                     		<c:forEach items="${carreras}" var="carrera">
 	                    		<option value="${carrera.idUnidadTransporte}">
 								${carrera.modelo}
 							</option>
                     		</c:forEach>
-                    </select> 
+                            </select>
+                            <select name="carrera" id="carrera" class="form-control">
+                                <option value="0" class="col-sm-6">--Elige un transporte--</option>
+                    		<c:forEach items="${empleados}" var="carrera">
+	                    		<option value="${carrera.idUnidadTransporte}">
+								${carrera.modelo}
+							</option>
+                    		</c:forEach>
+                            </select>    
+                                
                             </div>       
                             <!--BOTON AGREGAR PRODUCTO AL REGISTRO-->
                             <div class="form-group">
                                 <div class="col-sm">
-                                    <button type="submit" name="accion" value="Agregar" class="btn btn-outline-primary">Agregar Producto</button>
+                                    <button type="submit" name="accion" value="Agregar" class="btn btn-outline-primary">Agregar Envio</button>
                                 </div>
                             </div>
                         </div>
@@ -77,40 +61,53 @@
                     </form>
                 </div>
             </div>
-<div class="col-sm-8">
-                <div class="card">
-                    <div class="card-body">
-                        <table class="table table-hover table-responsive">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>IDENTIFICADOR</th>
-                                    <th>NOMBRES</th>
-                                    <th>DIRECCION</th>
-                                    <th>ESTADO</th>                                   
-                                    <th>ACCIONES</th>
-                                </tr>
-                            </thead>
-                            <tbody> 
-                                <c:forEach var="em" items="${clientes}">
-                                    <tr>
-                                        <td>${em.getId()}</td>
-                                        <td>${em.getDni()}</td>
-                                        <td>${em.getNom()}</td>
-                                        <td>${em.getDir()}</td>
-                                        <td>${em.getEs()}</td>                                        
-                                        <td>
-                                            <a class="btn btn-warning" href="Controlador?menu=Cliente&accion=Editar&id=${em.getId()}">Editar</a>
-                                            <a class="btn btn-danger" href="Controlador?menu=Cliente&accion=Delete&id=${em.getId()}">Delete</a>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-
-                            </tbody>
-                        </table>
+<div>               
+                        <div class="col-sm-8">
+                            <div class="card">
+                                <div class="card-body">
+                                    <table id="datos" number-per-page="10" current-page="" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
+                                        <thead>
+                                            <tr>
+                                                <th>NOMBRE</th>
+                                                <th>APELLIDO PATERNO</th>
+                                                <th>APELLIDO MATERNO</th>
+                                                <th>SEXO</th>
+                                                <th>DIRECCION</th>
+                                                <th>CP</th>
+                                                <th>CIUDAD</th>
+                                                <th>RFC</th>
+                                                <th>TEL</th>
+                                                <th>EMAIL</th>
+                                                <th>TIPO</th>
+                                                <th>ESTATUS</th>
+                                               
+                                            </tr>
+                                        </thead>
+                                        <tbody> 
+                                            <c:forEach var="t" items="${t}">
+                                                <tr>
+                                                    <td>${t.getId}</td>
+                                                    <td>${t.getEmpleado.getNombre()}</td>
+                                                    <td>${t.getEmpleado().getPaterno}</td>
+                                                    <td>${t.getEmpleado().getMaterno}</td>
+                                                    <td>${t.getRol()}</td>
+                                                    <td>${t.getEnvio().getIdEnvio}</td>
+                                                    <td>${t.getEnvio().getFechaSalida()}</td>
+                                                    <td>${t.getEnvio().getUnidad().getIdUnidadTransporte()}</td>
+                                                    <td>${t.getEnvio().getUnidad().getPlacas()}</td>
+                                                    
+                                                    <td>
+                                                        <a class="btn btn-warning" href="Controlador?menu=clienteIndividual&accion=Editar&id=${CI.getCliente().getIdCliente()}">Editar</a>
+                                                        <a class="btn btn-danger" href="Controlador?menu=clienteIndividual&accion=Delete&id=${CI.getCliente().getIdCliente()}">Delete</a>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
         </div>
 
                  
