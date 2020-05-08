@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Modelo;
 
 /**
@@ -11,30 +6,28 @@ package Modelo;
  */
 public class Tripulacion {
     
-    int idEmpleado;
-    int idEnvio;
+    Empleado Empleado;
+    Envios envio;
     String rol;
 
-    public Tripulacion(int idEmpleado, int idEnvio, String rol) {
-        this.idEmpleado = idEmpleado;
-        this.idEnvio = idEnvio;
-        this.rol = rol;
+    public Tripulacion() {
     }
 
-    public int getIdEmpleado() {
-        return idEmpleado;
+    
+    public Empleado getEmpleado() {
+        return Empleado;
     }
 
-    public void setIdEmpleado(int idEmpleado) {
-        this.idEmpleado = idEmpleado;
+    public void setEmpleado(Empleado Empleado) {
+        this.Empleado = Empleado;
     }
 
-    public int getIdEnvio() {
-        return idEnvio;
+    public Envios getEnvio() {
+        return envio;
     }
 
-    public void setIdEnvio(int idEnvio) {
-        this.idEnvio = idEnvio;
+    public void setEnvio(Envios envio) {
+        this.envio = envio;
     }
 
     public String getRol() {
@@ -44,8 +37,5 @@ public class Tripulacion {
     public void setRol(String rol) {
         this.rol = rol;
     }
-    
-    
-    
-    
+
 }
