@@ -78,6 +78,12 @@ public class UnidadeTransporteDAO {
             ps.setString(5, UT.getCapacidad() );
             ps.setInt(6, UT.getIdUnidadTransporte());
             System.out.println("Estoy Actualizando" );
+            ps.setString(1, UT.getPlacas());
+            ps.setString(2, UT.getMarca());
+            ps.setString(3, UT.getModelo());
+            ps.setString(4, UT.getAnio() );
+            ps.setString(5, UT.getCapacidad());
+            ps.setInt(6, UT.getIdUnidadTransporte());
             ps.executeUpdate();
             
         } catch (Exception e) {
