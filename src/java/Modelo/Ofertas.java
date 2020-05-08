@@ -16,36 +16,15 @@ int idOferta;
 String nombre;
 String descripcion;
 float descuento;
-Date fechainicio;
-Date fechafin;
+String fechainicio;
+String fechafin;
 int cantMini;
 String estatus;
 
     public Ofertas() {
     }
 
-    public Ofertas(int idOferta, String nombre, String descripcion, float descuento, Date fechainicio, Date fechafin, int cantMini, String estatus) {
-        this.idOferta = idOferta;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.descuento = descuento;
-        this.fechainicio = fechainicio;
-        this.fechafin = fechafin;
-        this.cantMini = cantMini;
-        this.estatus = estatus;
-    }
 
-    public Ofertas(String nombre, String descripcion, float descuento, Date fechainicio, Date fechafin, int cantMini, String estatus) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.descuento = descuento;
-        this.fechainicio = fechainicio;
-        this.fechafin = fechafin;
-        this.cantMini = cantMini;
-        this.estatus = estatus;
-    }
-
-    
     public int getIdOferta() {
         return idOferta;
     }
@@ -78,19 +57,19 @@ String estatus;
         this.descuento = descuento;
     }
 
-    public Date getFechainicio() {
+    public String getFechainicio() {
         return fechainicio;
     }
 
-    public void setFechainicio(Date fechainicio) {
+    public void setFechainicio(String fechainicio) {
         this.fechainicio = fechainicio;
     }
 
-    public Date getFechafin() {
+    public String getFechafin() {
         return fechafin;
     }
 
-    public void setFechafin(Date fechafin) {
+    public void setFechafin(String fechafin) {
         this.fechafin = fechafin;
     }
 
@@ -109,6 +88,5 @@ String estatus;
     public void setEstatus(String estatus) {
         this.estatus = estatus;
     }
-
 
 }

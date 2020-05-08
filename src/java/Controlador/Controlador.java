@@ -33,8 +33,8 @@ public class Controlador extends HttpServlet {
     ClienteIndividual CI = new ClienteIndividual();
     ClienteIndividualDAO cidao = new ClienteIndividualDAO();
     ClientesTienda CT = new ClientesTienda();
-    Ofertas o = new Ofertas();
-    OfertasDAO of = new OfertasDAO();
+    Ofertas of = new Ofertas();
+    OfertasDAO ofdao = new OfertasDAO();
     int ide, idu, idci;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -149,14 +149,14 @@ public class Controlador extends HttpServlet {
                         cliente.setEstatus("A");
                         ctdao.Actualizar(CT);
                         request.getRequestDispatcher("Controlador?menu=clientes&accion=Listar").forward(request, response);
-                        break;    
-                   
+                        break;
+
                     case "Editar":
                         CT = ctdao.listarID(Integer.parseInt(request.getParameter("id")));
                         request.setAttribute("CT", CT);
                         request.getRequestDispatcher("Controlador?menu=clientes&accion=Listar").forward(request, response);
                         break;
-     
+
                     case "Delete":
                         ctdao.Eliminar(Integer.parseInt(request.getParameter("id")));
                         request.getRequestDispatcher("Controlador?menu=clientes&accion=Listar").forward(request, response);
@@ -215,8 +215,9 @@ public class Controlador extends HttpServlet {
                         cliente.setEstatus(request.getParameter("A"));
                         cidao.Actualizar(CI);
                         request.getRequestDispatcher("Controlador?menu=clienteIndividual&accion=Listar").forward(request, response);
-                        break;
-
+                        break;  
+                    
+                    
                     case "Delete":
                         cidao.Eliminar(Integer.parseInt(request.getParameter("id")));
                         request.getRequestDispatcher("Controlador?menu=clienteIndividual&accion=Listar").forward(request, response);
@@ -231,12 +232,47 @@ public class Controlador extends HttpServlet {
             try {
                 switch (accion) {
                     case "Listar":
-                        List lista = of.listar();
+                        List lista = ofdao.listar();
                         request.setAttribute("listar", lista);
                         System.out.println(lista);
                         break;
-                    default:
-                        throw new AssertionError();
+                    
+                    case "Agregar":
+                        of.setIdOferta(ofdao.ultimoID());
+                        of.setNombre(request.getParameter("txtnombre"));
+                        of.setDescripcion(request.getParameter("txtdescripcion"));
+                        of.setDescuento(Integer.parseInt(request.getParameter("txtdescuento")));
+                        of.setFechainicio(request.getParameter("txtfechaini"));
+                        of.setFechafin(request.getParameter("txtfechafi"));
+                        of.setCantMini(Integer.parseInt(request.getParameter("txtcantMin")));
+                        of.setEstatus(request.getParameter("txtestatus"));
+                        ofdao.agregar(of);
+                        request.getRequestDispatcher("Controlador?menu=Ofertas&accion=Listar").forward(request, response);
+                        break;
+                    
+                    case "Actualizar":
+                        of.setNombre(request.getParameter("txtnombre"));
+                        of.setDescripcion(request.getParameter("txtdescripcion"));
+                        of.setDescuento(Float.parseFloat(request.getParameter("txtdescuento")));
+                        of.setFechainicio(request.getParameter("txtfechaini"));
+                        of.setFechafin(request.getParameter("txtfechafi"));
+                        of.setCantMini(Integer.parseInt(request.getParameter("txtcantMin")));
+                        of.setEstatus(request.getParameter("txtestatus"));
+                        ofdao.Actualizar(of);
+                        request.getRequestDispatcher("Controlador?menu=Ofertas&accion=Listar").forward(request, response);
+                        break;
+
+                        case "Editar":
+                        of = ofdao.listarID(Integer.parseInt(request.getParameter("id")));
+                        request.setAttribute("of",of);
+                        request.getRequestDispatcher("Controlador?menu=Ofertas&accion=Listar").forward(request, response);
+                        break;
+                             
+                        case "Delete":
+                        ofdao.Eliminar(Integer.parseInt(request.getParameter("id")));
+                        request.getRequestDispatcher("Controlador?menu=Ofertas&accion=Listar").forward(request, response);
+                        break;
+
                 }
                 request.getRequestDispatcher("Ofertas.jsp").forward(request, response);
             } catch (Exception e) {

@@ -18,31 +18,31 @@
                             <form action="Controlador?menu=Ofertas" method="POST">
                                 <div class="form-group">
                                     <label>Nombre</label>
-                                    <input type="text" id="nombre"  value="" name="txtnombre" class="form-control" >
+                                    <input type="text" id="nombre"  value="${of.getNombre()}" name="txtnombre" class="form-control" >
                                 </div>
                                 <div class="form-group">
                                     <label>Descripcion</label>
-                                    <input type="text" id=""  value="" name="txtdescripcion" class="form-control" >
+                                    <input type="text" id=""  value="${of.getDescripcion()}" name="txtdescripcion" class="form-control" >
                                 </div>
                                 <div class="form-group">
                                     <label>Descuento</label>
-                                    <input type="number" id=""  value="" name="txtdescuento" class="form-control" >
+                                    <input type="number" id=""  value="${of.getDescuento()}" name="txtdescuento" class="form-control" >
                                 </div>
                                 <div class="form-group">
                                     <label>Fecha inicio</label>
-                                    <input type="text" value="" name="fechaini" class="form-control" >
+                                    <input type="date" value="${of.getFechainicio()}" name="txtfechaini" class="form-control" >
                                 </div>
                                 <div class="form-group">
                                     <label>Fecha fin</label>
-                                    <input type="text" value="" name="fechafi" class="form-control" >
+                                    <input type="date" value="${of.getFechafin()}" name="txtfechafi" class="form-control" >
                                 </div>
                                 <div class="form-group">
                                     <label>Cantidad Minima</label>
-                                    <input type="number" value="" name="cantMin" class="form-control" >
+                                    <input type="number" value="${of.getCantMini()}" name="txtcantMin" class="form-control" >
                                 </div>
                                 <div class="form-group">
                                     <label>Estatus</label>
-                                    <input type="text" value="" name="estatus" class="form-control" >
+                                    <input type="text" value="${of.getEstatus()}" name="txtestatus" class="form-control" >
                                 </div>
                                 <input type="submit" name="accion" value="Agregar" class="btn btn-info">
                                 <input type="submit" name="accion" value="Actualizar" class="btn btn-success">
@@ -79,8 +79,8 @@
                                         <td>${of.getCantMini()}</td>    
                                         <td>${of.getEstatus()}</td>    
                                         <td>
-                                            <a class="btn btn-warning" href="Controlador?menu=Producto&accion=Editar&id=${em.getId()}">Editar</a>
-                                            <a class="btn btn-danger" href="Controlador?menu=Producto&accion=Delete&id=${em.getId()}">Delete</a>
+                                            <a class="btn btn-warning" href="Controlador?menu=Ofertas&accion=Editar&id=${of.getIdOferta()}">Editar</a>
+                                            <a class="btn btn-danger" href="Controlador?menu=Ofertas&accion=Delete&id=${of.getIdOferta()}">Delete</a>
                                         </td>
                                     </tr>
                                 </c:forEach>
