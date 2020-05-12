@@ -12,16 +12,15 @@ import Modelo.EnviosDAO;
 import Modelo.Ofertas;
 import Modelo.OfertasDAO;
 import Modelo.Tripulacion;
+import Modelo.TripulacionDAO;
 import Modelo.UnidadeTransporte;
 import Modelo.UnidadeTransporteDAO;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 /**
  *
  * @author Jaime
@@ -39,10 +38,12 @@ public class Controlador extends HttpServlet {
     ClientesTienda CT = new ClientesTienda();
     Ofertas of = new Ofertas();
     OfertasDAO ofdao = new OfertasDAO();
+    Tripulacion T =new Tripulacion();
+    TripulacionDAO tdao= new TripulacionDAO();
+    Envios en = new Envios();
     Envios env=new Envios();
     EnviosDAO envdao= new EnviosDAO();
     Tripulacion t =new Tripulacion();
-    
     int ide, idu, idci;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -80,13 +81,13 @@ public class Controlador extends HttpServlet {
                         System.out.println(lista);
                         break;
                     case "Agregar":
-
-                        UT.setIdUnidadTransporte(Integer.parseInt(request.getParameter("txtIdUnidadTransporte")));
+                        UT.setIdUnidadTransporte(udao.ultimoID());
                         UT.setMarca(request.getParameter("txtMarcas"));
                         UT.setPlacas(request.getParameter("txtPlacas"));
                         UT.setModelo(request.getParameter("txtModelo"));
                         UT.setAnio(request.getParameter("txtAnio"));
                         UT.setCapacidad(request.getParameter("txtCapacidad"));
+                        UT.setEstatus("A");
                         udao.Agregar(UT);
                         request.getRequestDispatcher("Controlador?menu=UnidadeTransportecrud&accion=Listar").forward(request, response);
                         break;
@@ -99,20 +100,20 @@ public class Controlador extends HttpServlet {
                         break;
 
                     case "Actualizar":
-                        UT.setIdUnidadTransporte(Integer.parseInt(request.getParameter("txtIdUnidadTransporte")));
                         UT.setMarca(request.getParameter("txtMarcas"));
                         UT.setPlacas(request.getParameter("txtPlacas"));
                         UT.setModelo(request.getParameter("txtModelo"));
                         UT.setAnio(request.getParameter("txtAnio"));
                         UT.setCapacidad(request.getParameter("txtCapacidad"));
+                        UT.setEstatus("A");
                         udao.Actualizar(UT);
                         request.getRequestDispatcher("Controlador?menu=UnidadeTransportecrud&accion=Listar").forward(request, response);
                         break;
 
-                    case "eliminar":
-                        break;
-                    default:
-                        throw new AssertionError();
+                    case "Eliminar":
+                        udao.Eliminar(Integer.parseInt(request.getParameter("id")));
+                        request.getRequestDispatcher("Controlador?menu=UnidadeTransportecrud&accion=Listar").forward(request, response);
+                    break;
                 }
                 request.getRequestDispatcher("UnidadeTransportecrud.jsp").forward(request, response);
             } catch (Exception e) {
@@ -243,8 +244,7 @@ public class Controlador extends HttpServlet {
                         List lista = ofdao.listar();
                         request.setAttribute("listar", lista);
                         System.out.println(lista);
-                        break;
-                    
+                        break;                    
                     case "Agregar":
                         of.setIdOferta(ofdao.ultimoID());
                         of.setNombre(request.getParameter("txtnombre"));
@@ -286,16 +286,50 @@ public class Controlador extends HttpServlet {
             } catch (Exception e) {
             }
         }
+          if (menu.equals("Tripulacion")) {
+            try {
+                switch (accion) {
+                        case "Listar":
+                        List lista = tdao.listar();
+                        request.setAttribute("listar", lista);
+                        break;                           
+                         case "Agregar":
+                        em.setId(Integer.parseInt(request.getParameter("txtidEmpleado")));
+                        en.setIdEnvio(Integer.parseInt(request.getParameter("txtidenvio")));
+                        T.setRol(request.getParameter("txtrol"));
+                        tdao.Agregar(T);
+                        request.getRequestDispatcher("Controlador?menu=Tripulacion&accion=Listar").forward(request, response);
+                        break;    
+                        case "Actualizar":
+                        em.setId(Integer.parseInt(request.getParameter("txtidEmpleado")));
+                        en.setIdEnvio(Integer.parseInt(request.getParameter("txtidenvio")));
+                        T.setRol(request.getParameter("txtrol"));
+                        tdao.Actualizar(T);
+                        request.getRequestDispatcher("Controlador?menu=Tripulacion&accion=Listar").forward(request, response);
+                        break;
+
+                        case "Editar":
+                        T = tdao.listarID(Integer.parseInt(request.getParameter("id")));
+                        request.setAttribute("T",T);
+                        request.getRequestDispatcher("Controlador?menu=Tripulacion&accion=Listar").forward(request, response);
+                        break;
+                             
+                        case "Delete":
+                        break;
+
+                }
+                request.getRequestDispatcher("Tripulacion.jsp").forward(request, response);
+            } catch (Exception e) {
+            }
+        }
+        
         if (menu.equals("Envios")) {
             try {
                 switch (accion) {
                     case "Listar":
-                    ArrayList<UnidadeTransporte> lista=udao.consultaGeneral();
-                    request.setAttribute("carreras", lista);
                         udao= new UnidadeTransporteDAO();
-                        lista=udao.consultaGeneral();
-                    List listado = envdao.listar();
-                    request.setAttribute("t", listado);    
+                        List listado = envdao.listar();
+                        request.setAttribute("t", listado);    
                         System.out.println(listado);
                         break;        
                     case "Agregar":

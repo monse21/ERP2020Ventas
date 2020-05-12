@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Modelo;
 
 /**
@@ -17,19 +12,12 @@ public class UnidadeTransporte {
     String modelo ;
     String anio ;
     String capacidad ;
+    String estatus;
 
     public UnidadeTransporte() {
     }
 
-    public UnidadeTransporte(int idUnidadTransporte, String placas, String marca, String modelo, String anio, String capacidad) {
-        this.idUnidadTransporte = idUnidadTransporte;
-        this.placas = placas;
-        this.marca = marca;
-        this.modelo = modelo;
-        this.anio = anio;
-        this.capacidad = capacidad;
-    }
-
+    
     public int getIdUnidadTransporte() {
         return idUnidadTransporte;
     }
@@ -78,5 +66,13 @@ public class UnidadeTransporte {
         this.capacidad = capacidad;
     }
 
+    public String getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(String estatus) {
+        this.estatus = estatus;
+    }
+    
     
 }

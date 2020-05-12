@@ -18,28 +18,24 @@
                         <div class="card-body">
                             <form action="Controlador?menu=UnidadeTransportecrud" method="POST">
                                 <div class="form-group">
-                                    <label>idUnidades de transporte</label>
-                                    <input type="number" id="idUnidadesTransporte"  value="${UT.getIdUnidadTransporte()}" name="txtIdUnidadTransporte" class="form-control" >
-                                </div>
-                                <div class="form-group">
                                     <label>Placas</label>
-                                    <input type="Text" value="${UT.getMarca()}" name="txtMarcas" class="form-control"  >
+                                    <input type="Text" value="${UT.getPlacas()}" name="txtMarcas" class="form-control"   required >
                                 </div>
                                 <div class="form-group">
                                     <label>Marca</label>
-                                    <input type="Tet" value="${UT.getPlacas()}" name="txtPlacas" class="form-control"  >
+                                    <input type="Tet" value="${UT.getMarca()}" name="txtPlacas" class="form-control"   required >
                                 </div>
                                 <div class="form-group">
                                     <label>Modelo</label>
-                                    <input type="text" value="${UT.getModelo()}" name="txtModelo" class="form-control" >
+                                    <input type="text" value="${UT.getModelo()}" name="txtModelo" class="form-control"  required >
                                 </div>
                                 <div class="form-group">
                                     <label>Anio</label>
-                                    <input type="number" value="${UT.getAnio()}" name="txtAnio" class="form-control" >
+                                    <input type="number" value="${UT.getAnio()}" name="txtAnio" class="form-control"  required>
                                 </div>
                                 <div class="form-group">
                                     <label>Capacidad</label>
-                                    <input type="number" value="${UT.getCapacidad()}" name="txtCapacidad" class="form-control" >
+                                    <input type="number" value="${UT.getCapacidad()}" name="txtCapacidad" class="form-control"  required>
                                 </div>
                                 <input type="submit" name="accion" value="Agregar" class="btn btn-info">
                                 <input type="submit" name="accion" value="Actualizar" class="btn btn-success">
@@ -54,7 +50,6 @@
                             <table id="datos" number-per-page="10" current-page="" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
                                         <th>PLACAS</th>
                                         <th>MARCA</th>
                                         <th>MODELO</th>
@@ -66,7 +61,6 @@
                                 <tbody> 
                                     <c:forEach var="UT" items="${listar}">
                                             <tr>
-                                            <td>${UT.getIdUnidadTransporte()}</td>
                                             <td>${UT.getPlacas()}</td>
                                             <td>${UT.getMarca()}</td>
                                             <td>${UT.getModelo()}</td>
@@ -74,7 +68,7 @@
                                             <td>${UT.getCapacidad()}</td>
                                             <td>
                                                 <a class="btn btn-warning" href="Controlador?menu=UnidadeTransportecrud&accion=Editar&id=${UT.getIdUnidadTransporte()}">Editar</a>
-                                                <a class="btn btn-danger" href="Controlador?menu=Empleado&accion=Delete&id=${UT.getIdUnidadTransporte()}">Delete</a>
+                                                <a class="btn btn-danger" href="Controlador?menu=UnidadeTransportecrud&accion=Eliminar&id=${UT.getIdUnidadTransporte()}">Delete</a>
                                             </td>
                                             </tr>
                                     </c:forEach>
