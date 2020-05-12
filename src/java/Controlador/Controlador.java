@@ -147,7 +147,7 @@ public class Controlador extends HttpServlet {
                     case "Actualizar":
                         CT.setNombre(request.getParameter("txtnombre"));
                         cliente.setDireccion(request.getParameter("txtdir"));
-                        cliente.setCodigoPostal(request.getParameter("txtcodigo"));
+                        cliente.setCodigoPostal(request.getParameter("txtcp"));
                         cliente.setIdCiudad(Integer.parseInt(request.getParameter("txtciudad")));
                         cliente.setRfc(request.getParameter("txtrfc"));
                         cliente.setTelefono(request.getParameter("txttel"));
@@ -156,6 +156,7 @@ public class Controlador extends HttpServlet {
                         CT.setLimiteCredito(Float.parseFloat(request.getParameter("txtcredito")));
                         cliente.setTipo("CT");
                         cliente.setEstatus("A");
+                        CT.setClientes(cliente);
                         ctdao.Actualizar(CT);
                         request.getRequestDispatcher("Controlador?menu=clientes&accion=Listar").forward(request, response);
                         break;
@@ -196,8 +197,8 @@ public class Controlador extends HttpServlet {
                         cliente.setRfc(request.getParameter("txtrfc"));
                         cliente.setTelefono(request.getParameter("txttel"));
                         cliente.setEmail(request.getParameter("txtemail"));
-                        cliente.setTipo(request.getParameter("T"));
-                        cliente.setEstatus(request.getParameter("A"));
+                        cliente.setTipo("CI");
+                        cliente.setEstatus("A");
                         CI.setCliente(cliente);
                         cidao.Agregar(CI);
                         request.getRequestDispatcher("Controlador?menu=clienteIndividual&accion=Listar").forward(request, response);

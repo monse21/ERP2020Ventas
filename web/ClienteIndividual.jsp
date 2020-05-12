@@ -91,9 +91,7 @@
                                                 <th>RFC</th>
                                                 <th>TEL</th>
                                                 <th>EMAIL</th>
-                                                <th>TIPO</th>
-                                                <th>ESTATUS</th>
-                                               
+                                                <th>ACCIONES</th>
                                             </tr>
                                         </thead>
                                         <tbody> 
@@ -109,8 +107,6 @@
                                                     <td>${CI.getCliente().getRfc()}</td>
                                                     <td>${CI.getCliente().getTelefono()}</td>
                                                     <td>${CI.getCliente().getEmail()}</td>
-                                                    <td>${CI.getCliente().getTipo()}</td>
-                                                    <td>${CI.getCliente().getEstatus()}</td>
                                                     <td>
                                                         <a class="btn btn-warning" href="Controlador?menu=clienteIndividual&accion=Editar&id=${CI.getCliente().getIdCliente()}">Editar</a>
                                                         <a class="btn btn-danger" href="Controlador?menu=clienteIndividual&accion=Delete&id=${CI.getCliente().getIdCliente()}">Delete</a>

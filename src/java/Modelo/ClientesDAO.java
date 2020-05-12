@@ -76,7 +76,7 @@ public class ClientesDAO {
     }
     
     public int Actualizar (ClientesTienda CT) {
-        String sql = "execute Actualizar_CT ?,?,?,?,?,?,?,?,?,?,?,?";
+        String sql = "execute Actualizar_CT ?,?,?,?,?,?,?,?,?,?,?,? ";
         try {
             con = Conexion.conectar();
             ps = con.prepareStatement(sql);
@@ -92,6 +92,9 @@ public class ClientesDAO {
             ps.setFloat(10, CT.getLimiteCredito());
             ps.setString(11, CT.getClientes().getTipo() );
             ps.setString(12, CT.getClientes().getEstatus());
+            
+            int dato=CT.getClientes().getIdCliente();
+              System.out.println("Error:" + dato);
             ps.executeUpdate();
         } catch (Exception e) {
             System.out.println("Error:" + e.getMessage());

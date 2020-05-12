@@ -70,8 +70,7 @@ public class UnidadeTransporteDAO {
             ps.setString(3, UT.getModelo());
             ps.setString(4, UT.getAnio());
             ps.setString(5, UT.getCapacidad());
-            ps.setString(6, UT.getEstatus());
-            
+            ps.setString(6, UT.getEstatus());            
             ps.executeUpdate();
         } catch (Exception e) {
         }
