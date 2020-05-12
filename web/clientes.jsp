@@ -26,43 +26,39 @@
                             <form action="Controlador?menu=clientes" method="POST">
                                 <div class="form-group">
                                     <label>Nombre</label>
-                                    <input type="text"  value="${CT.getNombre()}" name="txtnombre" class="form-control" >
+                                    <input type="text"  value="${CT.getNombre()}" name="txtnombre" class="form-control"  required >
                                 </div>
                                 <div class="form-group">
                                     <label>Contacto</label>
-                                    <input type="Text" value="${CT.getContacto()}" name="txtcontacto" class="form-control"  >
+                                    <input type="Text" value="${CT.getContacto()}" name="txtcontacto" class="form-control" required >
                                 </div>
                                 <div class="form-group">
                                     <label>Credito</label>
-                                    <input type="text" value="${CT.getLimiteCredito()}" name="txtcredito" class="form-control"  >
+                                    <input type="text" value="${CT.getLimiteCredito()}" name="txtcredito" class="form-control" required >
                                 </div>
                                 <div class="form-group">
                                     <label>Direccion</label>
-                                    <input type="text" value="${CT.getClientes().getDireccion()}" name="txtdir" class="form-control" >
+                                    <input type="text" value="${CT.getClientes().getDireccion()}" name="txtdir" class="form-control"  required >
                                 </div>
                                 <div class="form-group">
                                     <label>Codigo Postal</label>
-                                    <input type="number" value="${CT.getClientes().getCodigoPostal()}" name="txtcp" class="form-control" >
+                                    <input type="number" value="${CT.getClientes().getCodigoPostal()}" name="txtcp" class="form-control"required >
                                 </div>
                                 <div class="form-group">
                                     <label>RFC</label>
-                                    <input type="text" value="${CT.getClientes().getRfc()}" name="txtrfc" class="form-control" >
+                                    <input type="text" value="${CT.getClientes().getRfc()}" name="txtrfc" class="form-control" required >
                                 </div>
                                 <div class="form-group">
                                     <label>Telefono</label>
-                                    <input type="text" value="${CT.getClientes().getTelefono()}" name="txttel" class="form-control" >
+                                    <input type="text" value="${CT.getClientes().getTelefono()}" name="txttel" class="form-control" required >
                                 </div>
                                 <div class="form-group">
-                                    <label>Email</label>
-                                    <input type="text" value="${CT.getClientes().getEmail()}" name="txtemail" class="form-control" >
-                                </div>
-                                <div class="form-group">
-                                    <label>Tipo</label>
-                                    <input type="text" value="${CT.getClientes().getTipo()}" name="txttipo" class="form-control" >
+                                    <label>Email</label> 
+                                    <input type="text" value="${CT.getClientes().getEmail()}" name="txtemail" class="form-control" required >
                                 </div>
                                 <div class="form-group">
                                     <label>Ciudad</label>
-                                    <input type="text" value="${CT.getClientes().getIdCiudad()}" name="txtciudad" class="form-control" >
+                                    <input type="numbre" value="${CT.getClientes().getIdCiudad()}" name="txtciudad" class="form-control" required >
                                 </div>
                                 <input type="submit" name="accion" value="Agregar" class="btn btn-info">
                                 <input type="submit" name="accion" value="Actualizar" class="btn btn-success">
@@ -76,34 +72,30 @@
                             <table id="datos" number-per-page="10" current-page="" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>NOMBRE</th>
+                                        <th>CONTACTO</th>>
+                                        <th>CREDITO</th>
                                         <th>DIRECCION</th>
                                         <th>CP</th>
                                         <th>RFC</th>
                                         <th>TELEFONO</th>
                                         <th>EMAIL</th>
-                                        <th>TIPO</th>
                                         <th>CIUDAD</th>
-                                        <th>NOMBRE</th>
-                                        <th>CONTACTO</th>>
-                                        <th>CREDITO</th>
                                         <th>ACCIONES</th>
                                     </tr>
                                 </thead>
                               <tbody> 
                                             <c:forEach var="CT" items="${listar}">
                                                 <tr>
-                                                    <td>${CT.getClientes().getIdCliente()}</td>
+                                                    <td>${CT.getNombre()}</td>
+                                                    <td>${CT.getContacto()}</td>
+                                                    <td>${CT.getLimiteCredito()}</td>
                                                     <td>${CT.getClientes().getDireccion()}</td>
                                                     <td>${CT.getClientes().getCodigoPostal()}</td>
                                                     <td>${CT.getClientes().getRfc()}</td>
                                                     <td>${CT.getClientes().getTelefono()}</td>
                                                     <td>${CT.getClientes().getEmail()}</td>
-                                                    <td>${CT.getClientes().getTipo()}</td>
                                                     <td>${CT.getClientes().getIdCiudad()}</td>
-                                                    <td>${CT.getNombre()}</td>
-                                                    <td>${CT.getContacto()}</td>
-                                                    <td>${CT.getLimiteCredito()}</td>
                                                     <td>
                                                         <a class="btn btn-warning" href="Controlador?menu=clientes&accion=Editar&id=${CT.getClientes().getIdCliente()}">Editar</a>
                                                         <a class="btn btn-danger" href="Controlador?menu=clientes&accion=Delete&id=${CT.getClientes().getIdCliente()}">Delete</a>

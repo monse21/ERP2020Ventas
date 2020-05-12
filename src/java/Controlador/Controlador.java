@@ -131,7 +131,7 @@ public class Controlador extends HttpServlet {
                         cliente.setIdCliente(ctdao.ultimoID());
                         CT.setNombre(request.getParameter("txtnombre"));
                         cliente.setDireccion(request.getParameter("txtdir"));
-                        cliente.setCodigoPostal(request.getParameter("txtcodigo"));
+                        cliente.setCodigoPostal(request.getParameter("txtcp"));
                         cliente.setIdCiudad(Integer.parseInt(request.getParameter("txtciudad")));
                         cliente.setRfc(request.getParameter("txtrfc"));
                         cliente.setTelefono(request.getParameter("txttel"));
