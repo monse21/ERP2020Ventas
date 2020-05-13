@@ -254,7 +254,7 @@ public class Controlador extends HttpServlet {
                         of.setFechainicio(request.getParameter("txtfechaini"));
                         of.setFechafin(request.getParameter("txtfechafi"));
                         of.setCantMini(Integer.parseInt(request.getParameter("txtcantMin")));
-                        of.setEstatus(request.getParameter("txtestatus"));
+                        of.setEstatus("A");
                         ofdao.agregar(of);
                         request.getRequestDispatcher("Controlador?menu=Ofertas&accion=Listar").forward(request, response);
                         break;
@@ -266,7 +266,7 @@ public class Controlador extends HttpServlet {
                         of.setFechainicio(request.getParameter("txtfechaini"));
                         of.setFechafin(request.getParameter("txtfechafi"));
                         of.setCantMini(Integer.parseInt(request.getParameter("txtcantMin")));
-                        of.setEstatus(request.getParameter("txtestatus"));
+                        of.setEstatus("A");
                         ofdao.Actualizar(of);
                         request.getRequestDispatcher("Controlador?menu=Ofertas&accion=Listar").forward(request, response);
                         break;

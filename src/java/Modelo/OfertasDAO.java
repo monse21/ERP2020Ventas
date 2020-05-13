@@ -20,7 +20,7 @@ public class OfertasDAO {
     int r;
     
     public List listar() {
-        String sql ="select * from Ofertas"; 
+        String sql ="select * from Ofertas where estatus='A'"; 
         List<Ofertas> lista = new ArrayList<>();
         try {
             con = Conexion.conectar();
@@ -68,15 +68,14 @@ public class OfertasDAO {
         try {
             con = Conexion.conectar();
             ps = con.prepareStatement(sql);
+            ps.setInt(7, o.getIdOferta());
             ps.setString(1, o.getNombre());
             ps.setString(2, o.getDescripcion());
             ps.setFloat(3, o.getDescuento());
             ps.setString(4,  o.getFechainicio());
             ps.setString(5, o.getFechafin());
             ps.setInt(6, o.getCantMini());
-            ps.setString(7, o.getEstatus());
-            ps.setInt(8, o.getIdOferta());
-            ps.executeUpdate();
+           ps.executeUpdate();
      } catch (Exception e) {
      }
      return r;
