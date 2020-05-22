@@ -40,10 +40,6 @@
                                     <label>Cantidad Minima</label>
                                     <input type="number" value="${of.getCantMini()}" name="txtcantMin" class="form-control" >
                                 </div>
-                                <div class="form-group">
-                                    <label>Estatus</label>
-                                    <input type="text" value="${of.getEstatus()}" name="txtestatus" class="form-control" >
-                                </div>
                                 <input type="submit" name="accion" value="Agregar" class="btn btn-info">
                                 <input type="submit" name="accion" value="Actualizar" class="btn btn-success">
                             </form>
@@ -57,27 +53,23 @@
                                 <table id="datos" number-per-page="10" current-page="" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
                                   <thead>
                                             <tr>
-                                              <th>ID</th>
                                                 <th>NOMBRE</th>
                                                 <th>DESCRIPCION</th>
                                                 <th>POR DESC.</th>
                                                 <th>FECHA INICIO</th>
                                                 <th>FECHA FIN</th>
                                                 <th>CANT. MIN</th>  
-                                                <th>ESTATUS</th>  
                                             </tr>    
                                   </thead>  
                                    <tbody> 
                                 <c:forEach var="of" items="${listar}">
                                     <tr>
-                                        <td>${of.getIdOferta()}</td>                                      
                                         <td>${of.getNombre()}</td>
                                         <td>${of.getDescripcion()}</td>
                                         <td>${of.getDescuento()}</td>
                                         <td>${of.getFechainicio()}</td>    
                                         <td>${of.getFechafin()}</td>    
                                         <td>${of.getCantMini()}</td>    
-                                        <td>${of.getEstatus()}</td>    
                                         <td>
                                             <a class="btn btn-warning" href="Controlador?menu=Ofertas&accion=Editar&id=${of.getIdOferta()}">Editar</a>
                                             <a class="btn btn-danger" href="Controlador?menu=Ofertas&accion=Delete&id=${of.getIdOferta()}">Delete</a>

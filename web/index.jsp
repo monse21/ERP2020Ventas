@@ -33,11 +33,11 @@
                         </div>
                         <div class="form-group">
                             <label>Usuario:</label>
-                            <input type="text" name="txtuser" value="emp01" class="form-control">
+                            <input type="text" name="txtuser" value="emp01" class="form-control"  required >
                         </div>
                         <div class="form-group">
                             <label>Password:</label>
-                            <input type="password" name="txtpass" value="123" class="form-control">
+                            <input type="password" name="txtpass" value="123" class="form-control"  required >
                         </div>
                         <input type="submit" name="accion" value="Ingresar" class="btn btn-primary btn-block">
                     </form>

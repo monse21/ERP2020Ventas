@@ -135,7 +135,7 @@
                                                             </a>
 							</li>
 							<li class="full-width">
-							<a href="RegistrarVenta.jsp" class="full-width">
+							<a href="Controlador?menu=NuevaVenta&accion=Listar" class="full-width">
 							<div class="navLateral-body-cl">
 							<i class="zmdi zmdi-shopping-cart"></i>							
 							</div>
@@ -155,6 +155,17 @@
 							</div>
 						    </a>
 							</li>
+                                                        
+                                                       <li class="full-width">
+							<a href="Controlador?menu=Ofertas_Asignacion&accion=Listar" class="full-width">
+							<div class="navLateral-body-cl">
+							<i class="zmdi zmdi-shopping-cart"></i>							
+							</div>
+							<div  class="navLateral-body-cr hide-on-tablet">
+								OFERTAS PRODUCTOS
+							</div>
+						    </a>
+							</li> 
 						
 						</ul>
 					</li>
@@ -184,7 +195,7 @@
                                                             </a>
 							</li>
 							<li class="full-width">
-							<a href="compra.jsp" class="full-width">
+							<a href="Tripulacion.jsp" class="full-width">
 							<div class="navLateral-body-cl">
 							<i class="zmdi zmdi-shopping-cart"></i>							
 							</div>

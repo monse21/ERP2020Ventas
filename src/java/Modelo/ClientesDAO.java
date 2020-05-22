@@ -17,6 +17,7 @@ public class ClientesDAO {
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
+    ClienteIndividual CI = new ClienteIndividual();
     ClientesTienda CT = new ClientesTienda();
     Clientes cliente = new Clientes();
                
@@ -76,7 +77,7 @@ public class ClientesDAO {
     }
     
     public int Actualizar (ClientesTienda CT) {
-        String sql = "execute Actualizar_CT ?,?,?,?,?,?,?,?,?,?,?,?";
+        String sql = "execute Actualizar_CT ?,?,?,?,?,?,?,?,?,?,?,? ";
         try {
             con = Conexion.conectar();
             ps = con.prepareStatement(sql);
@@ -92,6 +93,9 @@ public class ClientesDAO {
             ps.setFloat(10, CT.getLimiteCredito());
             ps.setString(11, CT.getClientes().getTipo() );
             ps.setString(12, CT.getClientes().getEstatus());
+            
+            int dato=CT.getClientes().getIdCliente();
+              System.out.println("Error:" + dato);
             ps.executeUpdate();
         } catch (Exception e) {
             System.out.println("Error:" + e.getMessage());
@@ -158,5 +162,26 @@ public class ClientesDAO {
         }
         return id;
     }
-
+public ArrayList<ClienteIndividual> consultaGeneral(){
+		ArrayList<ClienteIndividual> listar=new ArrayList<ClienteIndividual>();
+		String sql="select c.idCliente, ct.nombre from ClienteIndividual ct join Clientes c on ct.idCliente=c.idCliente";
+		try{
+            con=Conexion.conectar();
+            ps=con.prepareStatement(sql);
+            rs=ps.executeQuery();
+			while(rs.next()){
+				//Clientes ci=new Clientes();
+				cliente.setIdCliente(rs.getInt(1));
+                                CI.setNombre(rs.getString(2));
+                                CI.setCliente(cliente);
+				listar.add(CI);
+                                System.out.println(CI);
+			}
+			rs.close();
+		}
+		catch(Exception e){
+			System.out.println("Error:"+e.getMessage());
+		}
+		return listar;
+	}
 }

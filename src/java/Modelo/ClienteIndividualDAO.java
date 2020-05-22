@@ -154,5 +154,28 @@ public class ClienteIndividualDAO {
         }
         return id;
     }
+    
+ public ClienteIndividual buscar(String rfc){
+        //Clientes c=new Clientes();
+        String sql="select ct.nombre,c.rfc from ClienteTienda ct join Clientes c on ct.idCliente=c.idCliente where rfc="+rfc;
+        try {
+            con = Conexion.conectar();
+            System.out.println("paso el conectar");
+            ps = con.prepareStatement(sql);
+            System.out.println("pasoe le sql");
+            rs = ps.executeQuery();
+            System.out.println("pasoe le query");
+            while (rs.next()) {
+                System.out.println("entro al wgile");
+                CI.setNombre(rs.getString(1));
+                System.out.println("paso el 1");
+                cliente.setRfc(rs.getString(2));
+                System.out.println("paso el 2");
+                CI.setCliente(cliente);                
+            }
+        } catch (Exception e) {
+        }
+        return CI;
+    }   
 }
     
