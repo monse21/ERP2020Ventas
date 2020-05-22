@@ -212,7 +212,8 @@ public class Controlador extends HttpServlet {
                         break;
                         
                     case"Agregar":
-                        ev.setId(Integer.parseInt(request.getParameter("txtIdEnvio")));
+                        //ev.setEnvio(en.setIdEnvio(envdao.ultimoID()));
+//en.setIdEnvio(Integer.parseInt(request.getParameter("txtidenvio")));*UT.setIdUnidadTransporte(udao.ultimoID())
                         ev.setIdVenta(Integer.parseInt(request.getParameter("txtIdVenta")));
                         ev.setFechaEntregaPlaneada(request.getParameter("txtFechaEntregaPlaneada"));
                         ev.setFechaEntregaReal(request.getParameter("txtFechaEntregaReal"));
@@ -228,7 +229,7 @@ public class Controlador extends HttpServlet {
                     break;
                     
                     case "Actualizar":
-                        ev.setId(Integer.parseInt(request.getParameter("txtIdEnvio")));
+                        en.setIdEnvio(Integer.parseInt(request.getParameter("txtidenvio")));
                         ev.setIdVenta(Integer.parseInt(request.getParameter("txtIdVenta")));
                         ev.setFechaEntregaPlaneada(request.getParameter("txtFechaEntregaPlaneada"));
                         ev.setFechaEntregaReal(request.getParameter("txrFechaEntregaReal"));

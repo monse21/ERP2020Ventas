@@ -52,5 +52,21 @@ public class EnviosDAO {
         }
         return lista;
     } 
+       public int ultimoID() {
+        String sql = "select max(idEnvio)+1 idEnvio from Envios";
+        int id = 1;
+        try {
+            con = Conexion.conectar();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                id = rs.getInt("idEnvio");
+            }
+            rs.close();
+
+        } catch (Exception e) {
+        }
+        return id;
+    }
     
 }

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import Modelo.Envios;
 /**
  *
  * @author Cristopher
@@ -24,6 +25,7 @@ public class EnvioVentasDAO {
     PreparedStatement ps;
     ResultSet rs;
     EnvioVentas ev = new EnvioVentas();
+    Envios en = new Envios();
     int r;
     public List listar() {
     String sql="select * from EnviosVentas";
@@ -33,27 +35,27 @@ public class EnvioVentasDAO {
             ps=con.prepareStatement(sql);
             rs=ps.executeQuery();
             while (rs.next()) {
-                EnvioVentas EV =new EnvioVentas();
-                EV.setId(rs.getInt(1));
-                EV.setIdVenta(rs.getInt(2));
-                EV.setFechaEntregaPlaneada(rs.getString(3));
-                EV.setFechaEntregaReal(rs.getString(4));
-                lista.add(EV);
+                
+                en.setIdEnvio(rs.getInt(1));
+                ev.setIdVenta(rs.getInt(2));
+                ev.setFechaEntregaPlaneada(rs.getString(3));
+                ev.setFechaEntregaReal(rs.getString(4));
+                lista.add(ev);
             }
         } catch (Exception e) {
         }
         return lista;
     }
 
-    public int Agregar ( EnvioVentas EV ){
-     String sql="insert into EnviosVentas (IdEnvio,IdVenta,FechaEntregaPlanteada,FechaEntregaReal) values (?,?,?,?)";
+    public int Agregar ( EnvioVentas ev ){
+     String sql="insert into EnviosVentas values ?,?,?,?";
         try {
             con = Conexion.conectar();
             ps = con.prepareStatement(sql);
-            ps.setInt(1, EV.getId());
-            ps.setInt(2, EV.getIdVenta());
-            ps.setString(3, EV.getFechaEntregaPlaneada());
-            ps.setString(4, EV.getFechaEntregaReal());
+            ps.setInt(1, ev.getEnvio().getIdEnvio());
+            ps.setInt(2, ev.getIdVenta());
+            ps.setString(3, ev.getFechaEntregaPlaneada());
+            ps.setString(4, ev.getFechaEntregaReal());
             ps.executeUpdate();
         } catch (Exception e) {
           }
@@ -61,15 +63,15 @@ public class EnvioVentasDAO {
     }
     
     
-    public int Actualizar ( EnvioVentas EV ){
+    public int Actualizar ( EnvioVentas ev ){
      String sql="Update EnviosVentas set idVenta=?,fechaEntregaPlanteada=?,fechaEntregaReal=? where idEnvio=?";
         try {
             con = Conexion.conectar();
             ps = con.prepareStatement(sql);
-            ps.setString(1, EV.getFechaEntregaPlaneada() );
-            ps.setString(2, EV.getFechaEntregaReal() );
-            ps.setInt(3, EV.getIdVenta() );
-            ps.setInt(4, EV.getId() );
+            ps.setString(1, ev.getFechaEntregaPlaneada() );
+            ps.setString(2, ev.getFechaEntregaReal() );
+            ps.setInt(3, ev.getIdVenta() );
+            ps.setInt(4, ev.getEnvio().getIdEnvio());
             System.out.println("Estoy Actualizando" );
             ps.executeUpdate();
             
@@ -85,7 +87,7 @@ public class EnvioVentasDAO {
             ps=con.prepareStatement(sql);
             rs=ps.executeQuery();
             while (rs.next()) {
-                ev.setId(rs.getInt(1));
+                en.setIdEnvio(rs.getInt(1));
                 ev.setIdVenta(rs.getInt(2));
                 ev.setFechaEntregaPlaneada(rs.getString(3));
                 ev.setFechaEntregaReal(rs.getString(4));

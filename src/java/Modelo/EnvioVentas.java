@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Modelo;
-
+import Modelo.Envios;
 /**
  *
  * @author Cristopher
@@ -14,6 +14,7 @@ public class EnvioVentas {
     int idVenta;
     String FechaEntregaPlaneada;
     String FechaEntregaReal;
+    Envios envios = new Envios ();
     
     public EnvioVentas(){
     }
@@ -25,12 +26,12 @@ public class EnvioVentas {
         this.FechaEntregaReal = FechaEntregaReal;
     }
     
-    public int getId(){
-        return id;
+    public Envios getEnvio(){
+        return envios;
     }
     
-    public void setId(int id){
-        this.id = id;
+    public void setEnvio(Envios envios){
+        this.envios = envios;
     }
     
     public int getIdVenta (){

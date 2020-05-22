@@ -24,7 +24,7 @@
                             <form action="Controlador?menu=EnviosVentascrud" method="POST">
                                 <div class="form-group">
                                     <label>id Envio</label>
-                                    <input type="number" id="idEnvio"  value="${ev.getId ()}" name="txtIdEnvio" class="form-control" >
+                                    <input type="number" id="idEnvio"  value="${en.getIdEnvio ()}" name="txtIdEnvio" class="form-control" >
                                 </div>
                                 <div class="form-group">
                                     <label>id Ventas</label>
@@ -51,7 +51,7 @@
                             <table id="datos" number-per-page="10" current-page="" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>ID ENVIO</th>
                                         <th>ID VENTA</th>
                                         <th>FECHA DE ENTREGA PLANEADA</th>
                                         <th>FECHA DE ENTREGA REAL</th>
@@ -60,8 +60,8 @@
                                 <tbody> 
                                     <c:forEach var="ev" items="${listar}">
                                             <tr>
-                                            <td>${ev.getId()}</td>
-                                            <td>${ev.getIdVenta()}</td>
+                                            <td>${en.getIdEnvio ()}</td>
+                                            <td>${ev.getIdVenta ()}</td>
                                             <td>${ev.getFechaEntregaPlaneada ()}</td>
                                             <td>${ev.getFechaEntregaReal ()}</td>
                                             <td>
