@@ -16,26 +16,6 @@
     </head>
     <body>
        <section class="full-width pageContent">           
-                </div>
-                <div class="dropdown">
-                <button style="border: none" class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    ${usuario.getNom()}
-                </button>
-                <div class="dropdown-menu text-center">
-
-                    <a class="dropdown-item" href="#">
-                        <img src="img/user.png" alt="60" width="60"/>
-                    </a>
-                    <a class="dropdown-item" href="#">${usuario.getUser()}</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="Validar?accion=Salir">Salir</a>
-                </div>
-            </div>
-            
-              <!--<div class="embed-responsives m-4" style="height: 530px;">
-             <iframe class="embed-responsive-item" name="myFrame"  style="height: 100%; width: 100%; border:navy"></iframe>
-        </div>-->
-       
         <div class="d-flex">
             <div class="col-lg-5 parte01">
                 <div class="card">
@@ -44,15 +24,18 @@
                         <div class="card-body">
                             <!--DATOS DEL PRODUCTO-->
                             <div class="form-group">
+                                <label>Seleccionar Cliente</label>
+                            </div>
+                            <div class="form-group">
                                 <label>Datos del Cliente</label>
                             </div>
                             <div class="form-group d-flex">
                                 <div class="col-sm-6 d-flex">
-                                    <input type="text" name="codigocliente" value="${c.getDni()}" class="form-control" placeholder="Codigo">
+                                    <input type="text" name="codigocliente" value="${c.getCliente().getRfc()}" class="form-control" placeholder="Codigo">
                                     <button type="submit" id="buscar" name="accion" value="BuscarCliente" class="btn btn-outline-info" >Buscar</button>
                                 </div>                           
                                 <div class="col-sm-6">
-                                    <input type="text" id="respuesta" name="nombrescliente" value="${c.getNom()}" placeholder="Datos Cliente" class="form-control">
+                                    <input type="text" id="respuesta" name="nombrescliente" value="${c.getNombre()}" placeholder="Datos Cliente" class="form-control">
                                 </div>                           
                             </div>
                             <!--DATOS DEL PRODUCTO-->
@@ -61,24 +44,43 @@
                             </div>
                             <div class="form-group d-flex">
                                 <div class="col-sm-6 d-flex">
-                                    <input type="text" name="codigoproducto" value="${producto.getId()}" class="form-control" placeholder="Codigo">
+                                    <input type="text" name="codigoproducto" value="${producto.getIdProducto()}" class="form-control" placeholder="Codigo">
                                     <button  type="submit" name="accion" value="BuscarProducto" class="btn btn-outline-info">Buscar</button>
                                   
                                 </div>                           
                                 <div class="col-sm-6">
-                                    <input type="text" name="nomproducto" value="${producto.getNom()}" placeholder="Datos Producto" class="form-control">
+                                    <input type="text" name="nomproducto" value="${producto.getNombre()}" placeholder="Datos Producto" class="form-control">
                                 </div>  
                             </div>
                             <div class="form-group d-flex">
                                 <div class="col-sm-6 d-flex">
-                                    <input type="text" name="precio" value="${producto.getPre()}" class="form-control" placeholder="S/.0.00">                                
+                                    <input type="text" name="precio" value="${producto.getPrecioVenta()}" class="form-control" placeholder="S/.0.00">                                
                                 </div>                           
                                 <div class="col-sm-3">
                                     <input type="number" value="1" name="cant" placeholder="" class="form-control">
                                 </div>  
                                 <div class="col-sm-3">
-                                    <input type="text" name="stock" value="${producto.getStock()}" placeholder="Stock" class="form-control">
+                                    <input type="text" name="stock" value="${producto.getPuntoReorden()}" placeholder="Stock" class="form-control">
                                 </div>  
+                            </div>
+                            <!---AGREGAR OFERTA-->    
+                            <div class="form-group">
+                                <label>Datos Oferta</label>
+                            </div>
+                            <div class="form-group d-flex">
+                                <div class="col-sm-6 d-flex">
+                                    <input type="text" name="oferta" value="${of.getIdOferta()}" class="form-control" placeholder="Codigo">
+                                    <button  type="submit" name="accion" value="BuscarOferta" class="btn btn-outline-info">Buscar</button>
+                                  
+                                </div>                           
+                                <div class="col-sm-6">
+                                    <input type="text" name="ofertanomb" value="${of.getNombre()}" placeholder="Datos de la oferta" class="form-control">
+                                </div>  
+                            </div>
+                            <div class="form-group d-flex">
+                                <div class="col-sm-6 d-flex">
+                                    <input type="text" name="descuento" value="${of.getDescuento()}" class="form-control" placeholder="S/.0.00">                                
+                                </div>                            
                             </div>
                             <!--BOTON AGREGAR PRODUCTO AL REGISTRO-->
                             <div class="form-group">
