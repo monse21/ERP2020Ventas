@@ -5,7 +5,26 @@
 <%@page session="true" %>
  
 <!DOCTYPE html>
-
+<script>
+           function crearReloj()
+           {
+           var ahora =new Date();
+           var h = ahora.getHours();
+           var m = ahora.getMinutes();
+           var s = ahora.getSeconds();
+           
+           m= corregirHora(m);
+           s =corregirHora(s);
+           document.getElementById('reloj').innerHTML= h+":"+m+":"+s;
+           var t=setTimeout(function() {crearReloj()},1000);
+           }
+           function corregirHora(i)
+           {
+               if(i<10){i = "0" + i}
+               return i;
+           }
+    </script>  
+    <body onload="crearReloj()">
 <!-- navBar -->
 	<div class="full-width navBar">
 		<div class="full-width navBar-options">
@@ -13,12 +32,12 @@
 			<div class="mdl-tooltip" for="btn-menu">Menu</div>
 			<nav class="navBar-options-list">
 				<ul class="list-unstyle">
-					<li style="float:rigth" class="btn-exit" id="btn-exi">
-						<i class="fas fa-door-open">${usuario.getNombre()}</i>
+					<li style="float:right" id="reloj"></li>
+					<li style="float:left" class="btn-exit" id="btn-exi">
+                                            
 						<div class="mdl-tooltip" for="btn-exi">Salir</div>
+                                                
 					</li>
-                                      
-                                        <!---<li class="text-condensedLight noLink" ><small><--%= sesion.getAttribute("usuario")%></small></li>--->
 					<li class="noLink">
 						<figure>
 							<img src="assets/img/avatar-male.png" alt="Avatar" class="img-responsive">
@@ -111,7 +130,7 @@
                                                                     <i class="zmdi zmdi-account "></i>
                                                                     </div>
                                                                     <div class="navLateral-body-cr hide-on-tablet">
-                                                                            CLIENTES INDIDUAL
+                                                                            CLIENTES INDIVIDUAL
                                                                     </div>
                                                             </a>
 							</li>
@@ -122,6 +141,17 @@
 							</div>
 							<div  class="navLateral-body-cr hide-on-tablet">
 								VENTAS
+							</div>
+						    </a>
+							</li>
+                                                       
+                                                        <li class="full-width">
+							<a href="Controlador?menu=Ofertas&accion=Listar" class="full-width">
+							<div class="navLateral-body-cl">
+							<i class="zmdi zmdi-shopping-cart"></i>							
+							</div>
+							<div  class="navLateral-body-cr hide-on-tablet">
+								OFERTAS
 							</div>
 						    </a>
 							</li>
@@ -172,7 +202,18 @@
                                                                     </div>
                                                             </a>
 							</li>
-						
+                                                        
+                                                      							<li class="full-width">
+                                                            <a href="Controlador?menu=Envios&accion=Listar" class="full-width">
+                                                                    <div class="navLateral-body-cl">
+                                                                    <i class="zmdi zmdi-account "></i>
+                                                                    </div>
+                                                                    <div class="navLateral-body-cr hide-on-tablet">
+                                                                     REALIZAR ENVIO
+                                                                    </div>
+                                                            </a>
+							</li>
+                                                        
 						</ul>
 					</li>
                                         <!--fin Envio-->

@@ -17,12 +17,13 @@ public class Clientes {
     String telefono;
     String email;
     String tipo;
+    String estatus;
     int idCiudad;
 
     public Clientes() {
     }
 
-    public Clientes(int idCliente, String direccion, String codigoPostal, String rfc, String telefono, String email, String tipo, int idCiudad) {
+    public Clientes(int idCliente, String direccion, String codigoPostal, String rfc, String telefono, String email, String tipo, int idCiudad,String estatus) {
         this.idCliente = idCliente;
         this.direccion = direccion;
         this.codigoPostal = codigoPostal;
@@ -31,6 +32,7 @@ public class Clientes {
         this.email = email;
         this.tipo = tipo;
         this.idCiudad = idCiudad;
+        this.estatus=estatus;
     }
 
     public int getIdCliente() {
@@ -95,6 +97,14 @@ public class Clientes {
 
     public void setIdCiudad(int idCiudad) {
         this.idCiudad = idCiudad;
+    }
+
+    public String getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(String estatus) {
+        this.estatus = estatus;
     }
     
     

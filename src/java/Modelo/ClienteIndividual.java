@@ -10,7 +10,7 @@ package Modelo;
  * @author DELL
  */
 public class ClienteIndividual {
-    int idClienteI;
+    Clientes cliente;
     String nombre;
     String apaterno;
     String amaterno;
@@ -19,12 +19,12 @@ public class ClienteIndividual {
     public ClienteIndividual() {
     }
 
-    public int getIdClienteI() {
-        return idClienteI;
+        public Clientes getCliente() {
+        return cliente;
     }
 
-    public void setIdClienteI(int idClienteI) {
-        this.idClienteI = idClienteI;
+    public void setCliente(Clientes cliente) {
+        this.cliente = cliente;
     }
 
     public String getNombre() {
@@ -58,5 +58,5 @@ public class ClienteIndividual {
     public void setSexo(String sexo) {
         this.sexo = sexo;
     }
-    
+
 }
